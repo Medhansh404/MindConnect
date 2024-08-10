@@ -29,6 +29,11 @@
   
   .link-container:hover ~ .link-container::before {
     transform-origin: left;
-    transform: scaleX(0);
+    transform: scaleX(1);
   }
+
+  /* .link-container:hover{
+    transform: scale(1); /* Adjust the scale factor as needed for the size increase */
+    /* box-shadow: 0 0 10px 5px rgba(102, 28, 186, 0.7); Adjust the color and size as needed */
   
+   
