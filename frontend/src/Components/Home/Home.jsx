@@ -3,6 +3,7 @@ import React from "react";
 import Blogs from "../Blogs/Blogs.jsx";
 import Navbar from "../Navbar/Navbar.jsx";
 import Tagline from "../Tagline/Tagline.jsx";
+import Testimonials from "../Testimonials/Testimonials.jsx";
 
 const Home = () =>{
     return (
@@ -24,6 +25,8 @@ const Home = () =>{
       </div>
       
       <Blogs />
+      <br />
+      <Testimonials />
       </div>
        
       
