@@ -1,72 +1,43 @@
-import React from "react";
-import blog from "../../assests/blog.jpg";
+import React from 'react';
+import BlogCard from './BlogCard';
 
-const Blogs = () => {
+function Blogs() {
+  const blogs = [
+    {
+      image: 'https://link-to-image1.png',
+      title: 'Exploring social media’s impact',
+      description: 'Mental health organisations collaborate to call for changes...',
+      link: '/blog1',
+    },
+    {
+      image: 'https://link-to-image2.png',
+      title: 'Innovate Program Launch',
+      description: 'ReachOut Australia announces the launch of its new Innovate...',
+      link: '/blog2',
+    },
+    {
+      image: 'https://link-to-image3.png',
+      title: 'Laps for Life – 2024: Impact statement',
+      description: 'Laps for Life provides an annual statement of its impact...',
+      link: '/blog3',
+    },
+  ];
+
   return (
-    <div>
-      <div className="py-5 px-5 bg-customGreen"></div>
-      
-      <div className="pt-10 bg-customBlue text-white">
-        <div className="flex p-4">
-          <div className="w-1/2 p-4 flex items-center justify-center rounded-3xl">
-          <img 
-            src ={blog}
-            alt="err" 
-            className="w-[638px] h-[386px] rounded-md"    
-            />
-            {/* <p className="text-center">Photo HERE</p> */}
-          </div>
-          <div className="w-1/2 items-center justify-center p-8">
-            <h1 className="text-center text-customGreen text-5xl">Why online?</h1>
-            <p className="relative top-8 text-left text-xl leading-8">
-              Seeking help is a big step, and speaking to a GP or mental health professional can be difficult.<br/> <br/>
-              After friends and family, the internet is the first place young people turn to for information and support.<br/> <br/>
-              After friends and family, the internet is the first place young people turn to 
-            </p>
-          </div>
-        </div>
-
-        <div className="flex p-4">
-        <div className="w-1/2 items-center justify-center p-8">
-            <h1 className="text-center text-customGreen text-5xl">Why online?</h1>
-            <p className="relative top-8 text-left text-xl leading-8">
-              Seeking help is a big step, and speaking to a GP or mental health professional can be difficult.<br/> <br/>
-              After friends and family, the internet is the first place young people turn to for information and support.<br/> <br/>
-              After friends and family, the internet is the first place young people turn to 
-            </p>
-          </div>
-          <div className="w-1/2 p-4 flex items-center justify-center rounded-3xl">
-          <img 
-            src ={blog}
-            alt="err" 
-            className="w-[638px] h-[386px] rounded-md"    
-            />
-            {/* <p className="text-center">Photo HERE</p> */}
-          </div>
-        </div>
-
-        <div className="flex p-4">
-        <div className="w-1/2 p-4 flex items-center justify-center rounded-3xl">
-          <img 
-            src ={blog}
-            alt="err" 
-            className="w-[638px] h-[386px] rounded-md"    
-            />
-            {/* <p className="text-center">Photo HERE</p> */}
-          </div>
-          <div className="w-1/2 items-center justify-center p-8">
-            <h1 className="text-center text-customGreen text-5xl">Why online?</h1>
-            <p className="relative top-8 text-left text-xl leading-8">
-              Seeking help is a big step, and speaking to a GP or mental health professional can be difficult.<br/> <br/>
-              After friends and family, the internet is the first place young people turn to for information and support.<br/> <br/>
-              After friends and family, the internet is the first place young people turn to 
-            </p>
-          </div>
-        </div>
+    <div className="container mx-auto py-12">
+      <div className="flex justify-between items-center mb-8">
+        <h1 className="text-4xl font-bold text-purple-600">Blogs</h1>
+        <a href="/view-all" className="text-purple-600 border border-purple-600 px-4 py-2 rounded hover:bg-purple-600 hover:text-white transition-colors duration-300">
+          View All
+        </a>
       </div>
-      <div className="bg-customGreen py-5 px-5"></div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        {blogs.map((blog, index) => (
+          <BlogCard key={index} {...blog} />
+        ))}
+      </div>
     </div>
   );
-};
+}
 
 export default Blogs;

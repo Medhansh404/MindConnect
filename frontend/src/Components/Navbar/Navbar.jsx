@@ -1,10 +1,11 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { Outlet, Link } from "react-router-dom";
 import logo from "../../assests/logo.png";
 import "./navbar.css"
 
 const Navbar = () => {
   return (
+    <div>
     <nav
       data-component="Normal width: Navigation"
       className="absolute left-10 right-10 top-20 z-50 grid rounded-full text-darkBlue shadow-md bg-white"
@@ -39,16 +40,16 @@ const Navbar = () => {
           >
             For Business
           </a>
-          <Link to = "/Blogs" //login
+          <Link to = "/login" 
             className="text-sm font-bold text-gray-700 bg-customYellow hover:bg-blue-900 hover:text-white px-4 py-2 rounded-full transition-colors link-container"
           >
             LogIn / Register
           </Link>
         </div>
-
+        
       </div>
-      
     </nav>
+    </div>
    
   );
 };
