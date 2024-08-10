@@ -1,18 +1,18 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./Components/Home/Home";
-// import Login from "./Components/Blogs/Blogs"; //change to login
+import Login from "./Components/Login/Login";
 // import "./App.css";
 import './index.css'; 
 // import RequireAuth from "./Components/RequireAuth";
 const App = () => {
   return (
-    <>
+    
       <div className="app">
         
           <Routes>
-            <Route path='/' element={<Home />}>
-            {/* <Route path="/Login" element={<Login />}/> */}
+            <Route path='/' element={<Home />} />
+            <Route path='/login' element={<Login />}/>
               
               {/*Protected Routes*/ }
               {/* <Route element={<RequireAuth allowedRoles={[2020, 2021, 2022, 2023]}/>}>
@@ -29,11 +29,10 @@ const App = () => {
 
               {/* catch all*/}
               <Route path="*" element={<></>} />
-            </Route>
           </Routes>
       
       </div>
-    </>
+    
   );
 };
 
