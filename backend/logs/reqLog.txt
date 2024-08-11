@@ -6479,3 +6479,9 @@
 20240810	22:05:25	847bc389-ecb6-4167-b1a6-8ba595f539e7	GET	http://localhost:3000	/trip?emp_id=1
 20240810	22:08:23	54d222ed-b15c-4b03-97ab-76139d2f0588	OPTIONS	http://localhost:3000	/auth
 20240810	22:08:23	84070ba7-6305-496f-af72-16f8e3ed5664	POST	http://localhost:3000	/auth
+20240812	00:42:51	56e11ea7-dc75-4966-9842-02ce7aa552cb	OPTIONS	http://localhost:3000	/auth
+20240812	00:42:51	ccd7ab0c-72d2-414d-b260-8ea88e6ef731	POST	http://localhost:3000	/auth
+20240812	00:43:26	9151bb85-5691-4aa3-ba55-0df577607f1d	OPTIONS	http://localhost:3000	/auth
+20240812	00:43:26	05283e78-b9c4-40e9-83e8-bff1aa8e4a57	POST	http://localhost:3000	/auth
+20240812	00:44:01	bf6e2bbb-a90f-4903-8daf-70852e336b4f	OPTIONS	http://localhost:3000	/auth
+20240812	00:44:01	0ae411e3-3264-49a9-a42c-3c29fefaf121	POST	http://localhost:3000	/auth

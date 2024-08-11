@@ -25,7 +25,7 @@ function Blogs() {
   ];
 
   return (
-    <div className="mx-auto px-24 py-12 bg-gray-100 h-screen">
+    <div className="mx-auto px-24 py-12 bg-gray-100 h-full">
       <div className="flex justify-between items-center mb-8 pb-9">
         <h1 className="text-6xl font-bold text-purple-600">Blogs</h1>
         <a href="/view-all" className="text-purple-600 text-xl font-bold border border-purple-600 px-11 py-4 rounded-full hover:bg-purple-600 hover:text-white transition-colors duration-300">

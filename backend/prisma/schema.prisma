@@ -13,27 +13,31 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User{
-  id Int @id @default(autoincrement())
-  name String
-  email String @unique
+model User {
+  id       Int       @id @default(autoincrement())
+  name     String
+  email    String    @unique
   password String
-  role Int[] 
-  scheme Int[]
+  role     Int[]     // If this refers to user roles, consider using an Enum
+  diaries  Diary[]   
+  messages Message[] 
 }
 
-model Trips{
-  id Int @id @default(autoincrement())
-  t_id Int @default(autoincrement())
-  src String
-  dest String
-  departureTime String
-  arrivalTime String
-  scheme String
-  distance Float
-  fare Int
-  adminApproval Boolean @default(false)
-  supApproval Boolean @default(false)
-  dirApproval Boolean @default(false)
-  employeeId Int 
+model Diary {
+  id     Int      @id @default(autoincrement())
+  t_id   Int      @unique @default(autoincrement())
+  text   String
+  date   DateTime
+  userId Int
+  user   User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Message {
+  id      Int      @id @default(autoincrement())
+  m_id    Int      @unique @default(autoincrement())
+  message String
+  seen    Boolean
+  date    DateTime
+  userId  Int
+  user    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
