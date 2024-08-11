@@ -1,8 +1,10 @@
 # MindConnect
 # [X] React App
-# [] Functional Home Page
-# [] Database connectivity(ORM, drizzle)
-# [] Login/Register
-# [] Deploy
+# [X] Functional Home Page
+# [X] Database connectivity(ORM, drizzle)
+# [X] Login/Register
+# [] Blogs , [] About Us, [] FAQs
 # [] Diary
+# [] Chat
 # [] Analytics(Sentry)
+# [] Deploy
