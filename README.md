@@ -1,6 +1,6 @@
 # MindConnect
 # [X] React App
-# [] Functional Home Page
+# [X] Functional Home Page
 # [] Database connectivity(ORM, drizzle)
 # [] Login/Register
 # [] Deploy

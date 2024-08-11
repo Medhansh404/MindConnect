@@ -3,23 +3,22 @@ const prisma = new PrismaClient();
 const bcrypt = require('bcrypt');
 
 const handleNewUser = async (req, res) => {
-    const { name, user, pwd } = req.body;
-    if (!name || !user || !pwd) return res.status(400).json({ 'message': 'Username and password are required.' });
+    const { name, email, pwd } = req.body;
+    if (!name || !email || !pwd) return res.status(400).json({ 'message': 'Username and password are required.' });
     
     try {
         // encrypt the password
-        const { name, user, pwd } = req.body;
+        const { name, email, pwd } = req.body;
         const hashedPwd = await bcrypt.hash(pwd, 10);
+        console.log(name, email, pwd,hashedPwd);
 
         // store the new user
         const newUser = await prisma.user.create({
             data: {
                 name:name,
-                email: user,
+                email: email,
                 password: hashedPwd,
                 role: [1910],
-                
-
             }
         });
 

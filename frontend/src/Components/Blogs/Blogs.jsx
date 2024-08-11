@@ -1,25 +1,27 @@
 import React from 'react';
 import BlogCard from './BlogCard';
-import imgg from "../../assests/blog.jpg";
+import imgg1 from "../../assests/blog1.jpeg";
+import imgg2 from "../../assests/blog2.jpeg";
+import imgg3 from "../../assests/blog3.jpg";
 
 function Blogs() {
   const blogs = [
     {
-      image: imgg,
-      title: 'Exploring social media’s impact',
-      description: 'Mental health organisations collaborate to call for changes...',
+      image: imgg1,
+      title: 'Power of Extracurriculars',
+      description: 'College life is often painted as an exciting journey filled with new...',
       link: '/blog1',
     },
     {
-      image: imgg,
-      title: 'Innovate Program Launch',
-      description: 'ReachOut Australia announces the launch of its new Innovate...',
+      image: imgg2,
+      title: 'Boosting Academic Success and Mental Health',
+      description: 'College life can be overwhelming with academic demands, social...',
       link: '/blog2',
     },
     {
-      image: imgg,
-      title: 'Laps for Life – 2024: Impact statement',
-      description: 'Laps for Life provides an annual statement of its impact...',
+      image: imgg3,
+      title: 'Friends: Your Lifeline in College Stress',
+      description: 'College is often described as the best time of your life...',
       link: '/blog3',
     },
   ];
@@ -27,7 +29,7 @@ function Blogs() {
   return (
     <div className="mx-auto px-24 py-12 bg-gray-100 h-full">
       <div className="flex justify-between items-center mb-8 pb-9">
-        <h1 className="text-6xl font-bold text-purple-600">Blogs</h1>
+        <h1 className="text-6xl font-bold text-purple-600">Latest Blogs</h1>
         <a href="/view-all" className="text-purple-600 text-xl font-bold border border-purple-600 px-11 py-4 rounded-full hover:bg-purple-600 hover:text-white transition-colors duration-300">
           View All
         </a>
