@@ -9,6 +9,7 @@ module.exports = {
         customYellow: 'rgb(from #fdd757 r g b/ 1)',
         customGreen: '#28B482',
         customBlue: '#001737',
+        customDarkYellow:'#D28C1E',
       },
     }
   },

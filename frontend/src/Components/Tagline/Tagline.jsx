@@ -1,5 +1,5 @@
 import React from "react";
-import banner from "../../assests/banner_img.png";
+import banner from "../../assests/banner.jpeg";
 
 const Tagline = () =>{
     return (
@@ -12,13 +12,14 @@ const Tagline = () =>{
           Empowering Mental Wellness In Students
           </h1>
           <p className="text-xl relative top-3">
-            Whether it’s virtual therapy, psychiatry, or coaching — Brightline works with employers and major insurers nationwide to get families affordable, accessible support.
+          Whether it's breaking the stigma around mental health, offering anonymous expert support, or sharing inspiring blogs — MindConnect provides a safe, anonymous platform for college students to thrive.
+
           </p>
           <a
             href="https://www.hellobrightline.com/employers/#employers-form"
             className="relative top-5 text-center text-2xl bg-white text-blue-900 font-bold py-5 px-6 rounded-full hover:bg-blue-900 hover:text-white transition duration-300"
           >
-            Bring Brightline to Your Team
+            Feeling Low :(
           </a>
         </div>
         
@@ -27,7 +28,7 @@ const Tagline = () =>{
           <img
             src={banner} // Replace with the actual path to your image
             alt="Brightline Session With Therapist"
-            className="rounded-lg object-contain min-h-16"
+            className="rounded-3xl object-contain min-h-16 shadow-2xl shadow-black"
           />
         </div>
         </div>
