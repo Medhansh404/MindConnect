@@ -1,6 +1,6 @@
 import React from 'react';
-import { Outlet, Link } from "react-router-dom";
-import logo from "../../assests/logo.png";
+import { Link } from "react-router-dom";
+import logo from "../../assests/logo1.png";
 import "./navbar.css"
 
 const Navbar = () => {
@@ -14,36 +14,48 @@ const Navbar = () => {
         {/* Logo */}
         <a aria-label="Go to homepage" href="/">
           <img src={logo} alt="resume" 
-          className="h-10 w-25 object-contain" 
+          className="h-15 w-36 object-contain" 
           style={{ color: 'transparent' }} 
              loading="lazy"
           />
         </a>
 
         {/* Navigation Links */}
-        <div className="laptop:flex space-x-8">
+        <div className="laptop:flex space-x-4">
           <a
             href="#about-us"
-            className="link-container text-sm font-medium text-gray-700 transition-colors hover:bg-blue-900 hover:text-white px-4 py-2 rounded-full"
+            className="link-container text-md font-medium text-gray-700 transition-colors hover:bg-blue-900 hover:text-white px-4 py-2 rounded-full"
+          >
+            Blogs
+          </a>
+          <a
+            href="#families"
+            className="text-md font-medium text-gray-700 transition-colors  hover:bg-blue-900 hover:text-white px-4 py-2 rounded-full link-container"
+          >
+            Scribble
+          </a>
+          <a
+            href="#business"
+            className="text-md font-medium text-gray-700 hover:bg-blue-900 hover:text-white px-4 py-2 rounded-full transition-colors link-container"
+          >
+            Chat With Expert
+          </a>
+          <a
+            href="#business"
+            className="text-md font-medium text-gray-700 hover:bg-blue-900 hover:text-white px-4 py-2 rounded-full transition-colors link-container"
           >
             About Us
           </a>
           <a
-            href="#families"
-            className="text-sm font-medium text-gray-700 transition-colors  hover:bg-blue-900 hover:text-white px-4 py-2 rounded-full link-container"
-          >
-            For Families
-          </a>
-          <a
             href="#business"
-            className="text-sm font-medium text-gray-700 hover:bg-blue-900 hover:text-white px-4 py-2 rounded-full transition-colors link-container"
+            className="text-md font-medium text-gray-700 hover:bg-blue-900 hover:text-white px-4 py-2 rounded-full transition-colors link-container"
           >
-            For Business
+            FAQs
           </a>
           <Link to = "/login" 
-            className="text-sm font-bold text-gray-700 bg-customYellow hover:bg-blue-900 hover:text-white px-4 py-2 rounded-full transition-colors link-container"
+            className="text-md font-bold text-gray-700 bg-customYellow hover:bg-blue-900 hover:text-white px-4 py-2 rounded-full transition-colors link-container"
           >
-            LogIn / Register
+            LogIn
           </Link>
         </div>
         

@@ -2,6 +2,8 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./Components/Home/Home";
 import Login from "./Components/Login/Login";
+import Register from "./Components/Register";
+
 // import "./App.css";
 import './index.css'; 
 // import RequireAuth from "./Components/RequireAuth";
@@ -13,6 +15,7 @@ const App = () => {
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/login' element={<Login />}/>
+            <Route path='/register' element={<Register />}/>
               
               {/*Protected Routes*/ }
               {/* <Route element={<RequireAuth allowedRoles={[2020, 2021, 2022, 2023]}/>}>

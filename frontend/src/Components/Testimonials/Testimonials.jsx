@@ -3,12 +3,16 @@ import './testimonials.css'; // Import the CSS file for transitions
 
 const testimonials = [
   {
-    text: "In just a few weeks, my son has learned some important and useful skills to manage his anxiety. His therapist is supportive, engaging, and paces the therapy in a way that helps my son feel successful.",
-    author: "Brightline member",
+    text: "MindConnect has been a game-changer for me during college. The blog posts are incredibly insightful. It’s comforting to know there’s a supportive community and expert guidance just a click away.",
+    author: "Devansh Jain - 4th Year College Student",
   },
   {
-    text: "My name is Devansh Jain, I was very depressed but this helped me a lot.",
-    author: "Brightline member",
+    text: "Navigating college stress can be overwhelming, but MindConnect has provided a lifeline. The resources and tips are practical and easy to follow, and the ability to connect with mental health experts anonymously has been invaluable.",
+    author: "Yash Chugh - 3rd Year College Student",
+  },
+  {
+    text: "I was hesitant about reaching out for mental health support, but MindConnect’s anonymous services made it easy to get the help I needed. The platform helped me manage stress more effectively.",
+    author: "Medhansh Sharma - 1st Year College Student",
   },
   // Add more testimonials here if needed
 ];
@@ -60,13 +64,13 @@ const Testimonials = () => {
               index === currentIndex + 1 || (currentIndex === testimonials.length - 1 && index === 0)
                 ? 'next'
                 : ''
-            } bg-blue-100 p-6 rounded-full`}
+            } bg-blue-100 p-6 rounded-3xl`}
           >
             <p className="text-lg text-gray-800">
               <span className="text-blue-600 text-xl">“</span> {testimonial.text}{" "}
               <span className="text-blue-600 text-xl">”</span>
             </p>
-            <p className="mt-4 font-semibold">{testimonial.author}</p>
+            <p className="mt-4 font-bold">{testimonial.author}</p>
           </div>
         ))}
       </div>
