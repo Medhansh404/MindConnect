@@ -19,18 +19,18 @@
     border-radius: 9999px; /* Fully round the background */
   }
   
-  .link-container:hover::before {
+  /* .link-container:hover::before {
     transform: scaleX(1);
-  }
+  } */
   
-  .link-container:hover::before {
+  /* .link-container:hover::before {
     transform-origin: right;
-  }
+  } */
   
-  .link-container:hover ~ .link-container::before {
+  /* .link-container:hover ~ .link-container::before {
     transform-origin: left;
     transform: scaleX(1);
-  }
+  } */
 
   /* .link-container:hover{
     transform: scale(1); /* Adjust the scale factor as needed for the size increase */
