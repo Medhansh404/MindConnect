@@ -44,7 +44,7 @@ const Testimonials = () => {
 
   return (
     <div className="max-w-4xl mx-auto text-center py-10 relative mt-36 mb-36">
-      <h1 className="text-5xl font-bold mb-8">Hear from our parents & caregivers</h1>
+      <h1 className="text-5xl font-bold mb-8">Hear From Our Happy healers</h1>
       <button
           onClick={prevSlide}
           className="absolute top-1/2 -left-12 transform -translate-y-1/2 -translate-x-9 text-2xl text-gray-800 button "

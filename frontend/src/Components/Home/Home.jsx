@@ -13,9 +13,10 @@ const Home = () =>{
       <div> 
       
       {/* header */}
-      <div className="pt-3 pb-3 text-center bg-white"> <span><Link to = "/Register" className="font-bold">Sign up!</Link> Today to take control of your mental well-being!
-
-          </span>
+      <div className="pt-3 pb-3 text-center bg-white"> 
+      <span><Link to = "/Register" className="font-bold">
+        Sign up!</Link> Today to take control of your mental well-being!
+      </span>
       </div>
       
       {/* Navbar */}
