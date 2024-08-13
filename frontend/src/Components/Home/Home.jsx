@@ -1,4 +1,4 @@
-//import {Outlet, Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import React from "react";
 import Blogs from "../Blogs/Blogs.jsx";
 import Gyan from "../Gyan.jsx"
@@ -13,8 +13,10 @@ const Home = () =>{
       <div> 
       
       {/* header */}
-      <div className="pt-3 pb-3 text-center bg-white"> <span>BrightLife Kids is now live (and free!) for all California families Sign up for free 
-          </span>
+      <div className="pt-3 pb-3 text-center bg-white"> 
+      <span><Link to = "/Register" className="font-bold">
+        Sign up!</Link> Today to take control of your mental well-being!
+      </span>
       </div>
       
       {/* Navbar */}
@@ -23,6 +25,7 @@ const Home = () =>{
           <Navbar />
         </div>
         <Tagline />
+        <div className="py-5 px-5 bg-customGreen"></div>
       </div>
       <Blogs />
       <Gyan />

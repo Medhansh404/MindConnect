@@ -1,14 +1,12 @@
 import { useState, useRef, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import useAuth from '../../Hooks/useAuth';
-import axios from "../../Api/axios";
-import logo from "../../assests/home_logo.png";
+import axios from "../Api/axios";
+import logo from "../assests/home_logo.png";
 
-const LOGIN_URL = '/auth';
+const REGISTER_URL = '/register';
 
-const Login = () => {
+const Register = () => {
 
-  const { setAuth } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -16,30 +14,31 @@ const Login = () => {
   const errRef = useRef();
   const [errMssg, setErrMssg] = useState('');
   const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
   const [pwd, setPwd] = useState('');
 
   useEffect(() => {
     setErrMssg('');
-  }, [email, pwd]);
+  }, [name, email, pwd]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(LOGIN_URL,
-        JSON.stringify({ email, pwd }),
+      const response = await axios.post(REGISTER_URL,
+        JSON.stringify({ name, email, pwd }),
         {
           headers: { 'Content-Type': 'application/json' },
           withCredentials: true
         }
       );
-      const accessToken = response.data?.accessToken;
-      const roles = response.data?.roles;
-      const id = response.data?.user_id;
-      setAuth({ id, email, pwd, roles, accessToken });
+      if(response.status === 200) {
+        console.log("Registered Successfully");
+      }
+      setName('');
       setEmail('');
       setPwd('');
-      from === '/' ? navigate("/") : navigate(from, { replace: true });
+      from === '/' ? navigate("/login") : navigate(from, { replace: true });
     }
     catch (error) {
       if (!error?.response) {
@@ -52,13 +51,12 @@ const Login = () => {
         setErrMssg('Unauthorized, Contact administration or try again');
       }
       else {
-        setErrMssg('Login Failed, Try again');
+        setErrMssg('Register Failed, Try again');
       }
     }
   };
 
   return (
-    <div>
     <div className="flex justify-center items-center min-h-screen bg-gray-900">
       <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
       <div className='relative flex right-9 '>
@@ -73,6 +71,19 @@ const Login = () => {
         </div>
         {errMssg && <p ref={errRef} className="text-red-500 text-center">{errMssg}</p>}
         <form onSubmit={handleSubmit} className="space-y-6">
+        <div>
+            {/* <label htmlFor="name" className="block text-sm font-medium text-gray-700"></label> */}
+            <input
+              type="text"
+              name="name"
+              id="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+              className="mt-1 block w-full px-3 py-3 border border-gray-500 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              placeholder="Enter Your Name"
+            />
+          </div>
           <div>
             {/* <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email address</label> */}
             <input
@@ -84,11 +95,11 @@ const Login = () => {
               onChange={(e) => setEmail(e.target.value)}
               required
               className="mt-1 block w-full px-3 py-3 border border-gray-500 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-              placeholder="Your Email"
+              placeholder="Enter Your Email"
             />
           </div>
           <div>
-            {/* <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label> */}
+            {/* <label htmlFor="password" className="block text-sm font-medium text-gray-700">Set Password</label> */}
             <input
               type="password"
               name="password"
@@ -97,28 +108,26 @@ const Login = () => {
               onChange={(e) => setPwd(e.target.value)}
               required
               className="mt-1 block w-full px-3 py-3 border border-gray-500 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-              placeholder="Your Password"
+              placeholder="Set Your Password"
             />
           </div>
-        
           <div>
             <button
               type="submit"
               className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
             >
-              LOGIN
+              REGISTER
             </button>
-            <div className="text-center pt-2">
-            <div className="text-sm">
-              <span className='font-medium'>Don't have an account? </span><a href="/register" className="font-medium text-indigo-600 hover:text-indigo-500 hover:underline">Sign Up</a>
+            <div className="items-center text-center">
+            <div className="text-sm pt-2">
+              <span className='font-medium'>Have an account? </span><a href="/login" className="font-medium text-indigo-600 hover:text-indigo-500 hover:underline">Login</a>
             </div>
           </div>
           </div>
         </form>
       </div>
     </div>
-    </div>
   );
 };
 
-export default Login;
+export default Register;
