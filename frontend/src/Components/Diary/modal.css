@@ -1,0 +1,13 @@
+.transition-opacity {
+    transition: opacity 0.3s ease;
+  }
+  
+  .transition-transform {
+    transition: transform 0.3s ease;
+    transform: scale(0.95);
+  }
+  
+  .modal-open .transition-transform {
+    transform: scale(1);
+  }
+  

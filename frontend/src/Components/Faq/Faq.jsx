@@ -6,20 +6,45 @@ import Footer from "../Footer";
 
 const faqs = [
     {
-    question: "What's Brightline?",
-    answer: `Brightline offers virtual behavioral health coaching and therapy for families with kids ages 0 to 17 years old. Brightline's expert team of coaches, therapists, and prescribers, offer live sessions for your child with no long waitlists. Coaching programs are also available for parents and caregivers.`,
+    question: "What is MindConnect?",
+    answer: `MindConnect is an online platform designed to support college students in managing their mental health. It provides access to expert advice, informative blogs, practical tips, and allows anonymous consultations with mental health professionals.
+`,
     },
     {
-    question: "Where are Brightline services available?",
-    answer: `Brightline services are available in various locations. You can check the availability in your area on their website.`,
+    question: "What services does MindConnect offer?",
+    answer: `MindConnect offers a variety of services including expert-written blogs, mental health tips, anonymous counseling sessions, and a journaling feature to help students manage stress and maintain their mental well-being.`,
     },
     {
-    question: "Do you have physical locations?",
-    answer: `Brightline primarily offers virtual services but also has physical locations in some areas.`,
+    question: "How can I connect with a counselor anonymously?",
+    answer: `You can connect with a counselor anonymously on MindConnect by using our secure platform.You just signup on the platform, and you’ll be able to chat with a mental health professional without sharing any personal information.`,
     },
     {
-    question: "Can I download the Brightline app? What's different between the app and desktop experience?",
-    answer: `Yes, the Brightline app is available for download on both Android and iOS. The app offers a similar experience to the desktop version, with added convenience for mobile use.`,
+    question: "What are the advantages of journaling on MindConnect?",
+    answer: `Journaling on MindConnect allows you to privately express your thoughts and feelings, helping you to process emotions, reduce stress, and gain clarity. Regular journaling can also improve self-awareness and mental well-being.`,
+    },
+    {
+        question: "How can I maintain good mental health while in college?",
+        answer: `Maintaining good mental health in college involves balancing academic responsibilities with self-care practices. Using resources like MindConnect, engaging in regular physical activity, staying connected with friends, and seeking help when needed are all key strategies.`,
+    },
+    {
+        question: "Is my information secure on MindConnect?",
+        answer: ` Yes, your information is completely secure on MindConnect. We prioritize your privacy and ensure that all your interactions on the platform are confidential and protected by robust security measures.`,
+    },
+    {
+        question: "Can I access MindConnect's resources anytime?",
+        answer: `Absolutely! MindConnect is available 24/7, so you can access blogs, tips, and other mental health resources whenever you need them.`,
+    },
+    {
+        question: "Do I have to pay to use MindConnect's services?",
+        answer: `No, MindConnect is completely free for college students. All resources, including expert blogs, tips, anonymous counseling sessions, and journaling, are available at no cost.`,
+    },
+    {
+        question: "How can MindConnect help me manage stress during exams?",
+        answer: ` MindConnect offers tips and strategies specifically designed to help you manage stress during exams. You can also talk to a counselor anonymously to get personalized advice on handling exam-related anxiety.`,
+    },
+    {
+        question: "How can I start journaling on MindConnect?",
+        answer: `To start journaling, simply sign in to your MindConnect account, navigate to the journaling section, and begin writing. The platform provides a secure space for you to regularly document your thoughts and experiences.`,
     },
 ];
 
@@ -33,22 +58,7 @@ const Faq = () => {
                 <span className="font-extrabold text-8xl">FAQs</span>
             </div>
             <div>
-            <div className="max-w-2xl mx-auto mt-40">
-                <h2 className="text-6xl font-bold text-center text-gray-900 mb-16">
-                    Getting started
-                </h2>
-                <div className="flex flex-col gap-2">
-                {faqs.map((faq, index) => (
-                    <FaqItem key={index} question={faq.question} answer={faq.answer} />
-                ))}
-                </div>
-                </div>
-            </div>
-            <div>
-            <div className="max-w-2xl mx-auto mt-40">
-                <h2 className="text-6xl font-bold text-center text-gray-900 mb-16">
-                    Getting started
-                </h2>
+            <div className="max-w-2xl mx-auto mt-32">
                 <div className="flex flex-col gap-2">
                 {faqs.map((faq, index) => (
                     <FaqItem key={index} question={faq.question} answer={faq.answer} />
