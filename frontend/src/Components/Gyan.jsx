@@ -3,7 +3,7 @@ import why from "../assests/why.jpeg";
 import stigma from "../assests/stigma.jpeg";
 import stud from "../assests/stud.jpeg";
 
-const Blogs = () => {
+const Gyan = () => {
   return (
     <div>
       <div className="py-5 px-5 bg-customGreen"></div>
@@ -78,4 +78,4 @@ equilibrium can be challenging. A lot of students struggle with that.
   );
 };
 
-export default Blogs;
+export default Gyan;

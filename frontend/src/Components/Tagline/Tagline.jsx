@@ -16,7 +16,7 @@ const Tagline = () =>{
 
           </p>
           <a
-            href="https://www.hellobrightline.com/employers/#employers-form"
+            href="/"
             className="relative top-5 text-center text-2xl bg-white text-blue-900 font-bold py-5 px-6 rounded-full hover:bg-blue-900 hover:text-white transition duration-300"
           >
             Feeling Low :(

@@ -4,11 +4,12 @@ import Home from "./Components/Home/Home";
 import Login from "./Components/Login/Login";
 import Register from "./Components/Register";
 import About from "./Components/About";
-
-// import "./App.css";
-import './index.css'; 
 import Faq from "./Components/Faq/Faq";
+import Blogs from "./Components/Blogs/Blogs";
+import Diary from "./Components/Diary/Diary";
+import './index.css'; 
 // import RequireAuth from "./Components/RequireAuth";
+
 const App = () => {
   return (
     
@@ -20,6 +21,8 @@ const App = () => {
             <Route path='/register' element={<Register />}/>
             <Route path="/about" element={<About />} />
             <Route path="/faq" element={<Faq />} />
+            <Route path="/blogs" element={<Blogs />} />
+            <Route path="/diary" element={<Diary />} />
               
               {/*Protected Routes*/ }
               {/* <Route element={<RequireAuth allowedRoles={[2020, 2021, 2022, 2023]}/>}>

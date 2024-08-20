@@ -33,7 +33,7 @@ const Navbar = () => {
               Blogs
             </NavLink>
             <NavLink
-              to="/scribble"
+              to="/diary"
               className={({ isActive }) => 
                 `text-md font-medium px-4 py-2 rounded-full transition-colors link-container ${
                   isActive ? 'bg-customYellow text-black font-semibold' : 'text-gray-700 hover:bg-blue-900 hover:text-white'
@@ -43,7 +43,7 @@ const Navbar = () => {
               Scribble
             </NavLink>
             <NavLink
-              to="/chat"
+              to="/login"
               className={({ isActive }) => 
                 `text-md font-medium px-4 py-2 rounded-full transition-colors link-container ${
                   isActive ? 'bg-customYellow text-black font-semibold' : 'text-gray-700 hover:bg-blue-900 hover:text-white'

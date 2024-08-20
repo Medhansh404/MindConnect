@@ -6517,3 +6517,5 @@
 20240812	04:49:58	45b037fc-9aaf-4171-9759-aac9e2b8562a	POST	http://localhost:3000	/register
 20240812	04:50:14	4bf3454c-bc8e-4605-a2c3-83d792a0b1be	OPTIONS	http://localhost:3000	/auth
 20240812	04:50:14	8e5777b5-966c-48a2-8e63-24b3db69d361	POST	http://localhost:3000	/auth
+20240812	20:10:18	defef756-a480-4279-a170-d3e2ee7f1238	OPTIONS	http://localhost:3000	/auth
+20240812	20:10:18	0f4de9a5-6c6a-4d4d-9e27-2429bf1d739e	POST	http://localhost:3000	/auth

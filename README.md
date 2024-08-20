@@ -3,7 +3,7 @@
 # [X] Functional Home Page
 # [X] Database connectivity(ORM, drizzle)
 # [X] Login/Register
-# [] Blogs , [] About Us, [] FAQs
+# [] Blogs , [X-] About Us, [X-] FAQs
 # [] Database connectivity(ORM, drizzle)
 # [] Login/Register
 # [] Deploy
