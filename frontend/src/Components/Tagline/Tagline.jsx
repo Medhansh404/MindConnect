@@ -1,6 +1,6 @@
 import React from "react";
 import banner from "../../assests/banner.jpeg";
-
+import { Link } from "react-router-dom";
 const Tagline = () =>{
     return (
 
@@ -15,12 +15,11 @@ const Tagline = () =>{
           Whether it's breaking the stigma around mental health, offering anonymous expert support, or sharing inspiring blogs — MindConnect provides a safe, anonymous platform for college students to thrive.
 
           </p>
-          <a
-            href="https://www.hellobrightline.com/employers/#employers-form"
+          <Link to ="/appointment"
             className="relative top-5 text-center text-2xl bg-white text-blue-900 font-bold py-5 px-6 rounded-full hover:bg-blue-900 hover:text-white transition duration-300"
           >
             Feeling Low :(
-          </a>
+          </Link>
         </div>
         
         {/* Image Content */}
