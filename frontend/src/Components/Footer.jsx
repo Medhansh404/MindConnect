@@ -19,10 +19,10 @@ function Footer() {
         <div>
           <ul className='text-lg font-bold flex flex-row space-x-4'>
             <li><a href="/" className="hover:underline">Chat With Expert</a></li>
-            <li><a href="/" className="hover:underline">Blogs</a></li>
-            <li><a href="/" className="hover:underline">FAQs</a></li>
-            <li><a href="/" className="hover:underline">About Us</a></li>
-            <li><a href="/" className="hover:underline">Scribble</a></li>
+            <li><a href="/blogs" className="hover:underline">Blogs</a></li>
+            <li><a href="/faq" className="hover:underline">FAQs</a></li>
+            <li><a href="/about" className="hover:underline">About Us</a></li>
+            <li><a href="/diary" className="hover:underline">Scribble</a></li>
           </ul>
         </div>
 

@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "./Navbar/Navbar";
-import banner from "../assests/banner.jpeg";
+import banner from "../assests/abtt.png";
 import devansh from "../assests/dj.jpeg";
 import manju from "../assests/manju.jpeg";
 import yash from "../assests/yash.jpeg";
@@ -46,11 +46,13 @@ const About = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-20 max-w-6xl mx-auto">
                 {/* Text Content */}
                 <div className="flex flex-col justify-center gap-6">
-                <h1 className="text-6xl font-bold text-center">
+                {/* <h1 className="text-6xl font-bold text-center">
                 Built for kids and teens, here for you
-                </h1>
+                </h1> */}
                 <p className="text-xl relative top-3">
-                Navigating parenthood can be difficult enough. Getting help shouldn't be. When your child needs support building social-emotional skills or is dealing with behavioral or mental health challenges like low self-esteem, ADHD, anxiety, or depression, think of Brightline as your trusted parenting partner.
+                <span className="font-bold">MindConnect</span> is a comprehensive platform dedicated to supporting college students in their mental health journey. We offer a safe and anonymous space where students can access a wide range of mental health resources, including latest blogs, practical tips, and the opportunity to connect with professionals without revealing their identity. To further enhance well-being, MindConnect also provides a journaling feature, allowing students to reflect on their thoughts and emotions in a private, secure environment. 
+                <br/> <br/>Our mission is to break the stigma around mental health issues by offering confidential support and tools, empowering students to navigate college life with confidence and resilience. 
+                At MindConnect, we’re here to help you prioritize your mental well-being and succeed both academically and personally
 
                 </p>
                 </div>

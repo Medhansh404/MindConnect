@@ -10,7 +10,7 @@ function BlogCard({ image, title, description, link }) {
         <p className="text-gray-700 text-lg mb-4">
           {description}
         </p>
-        <a href="/allblogs" className="text-purple-600 text-xl font-bold border border-purple-600 px-4 py-2 rounded-lg hover:bg-purple-600 hover:text-white transition-colors duration-300">
+        <a href="/" className="text-purple-600 text-xl font-bold border border-purple-600 px-4 py-2 rounded-lg hover:bg-purple-600 hover:text-white transition-colors duration-300">
           Read More
         </a>
       </div>

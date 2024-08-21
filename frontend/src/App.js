@@ -9,7 +9,11 @@ import Appointment from "./Components/ChatAppntmnt";
 import './index.css'; 
 import Faq from "./Components/Faq/Faq";
 import DiaryPage from "./Components/DiaryEntry";
-// import RequireAuth from "./Components/RequireAuth";
+import Faq from "./Components/Faq/Faq";
+import Blogs from "./Components/Blogs/Blogs";
+import Diary from "./Components/Diary/Diary";
+import './index.css'; 
+
 const App = () => {
   return (
     
@@ -23,7 +27,9 @@ const App = () => {
             <Route path="/faq" element={<Faq />} />
             <Route path='/appointment' element={<Appointment />} />
             <Route path='/diary' element={<DiaryPage />} />
-            
+            <Route path="/blogs" element={<Blogs />} />
+            <Route path="/diary" element={<Diary />} />
+              
               {/*Protected Routes*/ }
               {/* <Route element={<RequireAuth allowedRoles={[2020, 2021, 2022, 2023]}/>}>
               <Route path="diary" element={<Dashboard />} />

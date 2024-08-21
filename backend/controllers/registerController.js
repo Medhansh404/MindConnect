@@ -10,7 +10,7 @@ const handleNewUser = async (req, res) => {
         // encrypt the password
         const { name, email, pwd } = req.body;
         const hashedPwd = await bcrypt.hash(pwd, 10);
-        console.log(name, email, pwd,hashedPwd);
+        console.log(name, email, pwd);
 
         // store the new user
         const newUser = await prisma.user.create({
