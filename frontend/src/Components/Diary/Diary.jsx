@@ -31,29 +31,29 @@ const Diary = () => {
       entry,
     };
 
-    try {
-      const response = await axios.post(DIARY_URL, { 
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(diaryEntry),
-      });
+    // try {
+    //   const response = await axios.post(DIARY_URL, { 
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify(diaryEntry),
+    //   });
 
-      if (true) {
+    //   if (true) {
         setDiaries([...diaries, diaryEntry]);
         setTitle('');
         setEntry('');
         setTopic('career stress');
         setIsCreating(false);
-      } else {
-        console.error('Failed to save diary entry.');
-        // Handle error
-      }
-    } catch (error) {
-      console.error('Error:', error);
-      // Handle error
-    }
+  //     } else {
+  //       console.error('Failed to save diary entry.');
+  //       // Handle error
+  //     }
+  //   } catch (error) {
+  //     console.error('Error:', error);
+  //     // Handle error
+  //   }
   };
 
   const handleEditDiary = (index) => {
