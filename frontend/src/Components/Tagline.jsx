@@ -1,5 +1,5 @@
 import React from "react";
-import banner from "../../assests/banner.jpeg";
+import banner from "../assests/banner.jpeg";
 import { Link } from "react-router-dom";
 const Tagline = () =>{
     return (
@@ -26,7 +26,7 @@ const Tagline = () =>{
         {/* Image Content */}
         <div className="relative left-20 right-20 flex justify-center">
           <img
-            src={banner} // Replace with the actual path to your image
+            src={banner} 
             alt="Brightline Session With Therapist"
             className="rounded-3xl object-contain min-h-16 shadow-2xl shadow-black"
           />

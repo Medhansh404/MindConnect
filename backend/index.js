@@ -32,7 +32,8 @@ app.use('/auth', require('./routes/auth'));
 app.use('/refresh', require('./routes/refresh'));
 
 app.use(verifyJWT);
-app.use('/employees', require('./routes/api/employees'));
+
+app.use('/diary', require('./routes/api/diary'));
 
 app.all('*', (req, res) => {
     res.status(404);
