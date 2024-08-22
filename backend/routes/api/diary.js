@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const employeesController = require('../../controllers/diaryController');
+const diaryController = require('../../controllers/diaryController.js');
 
 router.route('/')
     .get(diaryController.getAllDiary)

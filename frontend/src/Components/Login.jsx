@@ -1,8 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import useAuth from '../../Hooks/useAuth';
-import axios from "../../Api/axios";
-import logo from "../../assests/home_logo.png";
+import useAuth from '../Hooks/useAuth';
+import axios from "../Api/axios";
+import logo from "../assests/home_logo.png";
 
 const LOGIN_URL = '/auth';
 

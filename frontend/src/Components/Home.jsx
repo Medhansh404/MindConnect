@@ -1,11 +1,11 @@
 import {Link} from 'react-router-dom';
 import React from "react";
-import Blogs from "../Blogs/Blogs.jsx";
-import Gyan from "../Gyan.jsx"
-import Navbar from "../Navbar/Navbar.jsx";
-import Tagline from "../Tagline/Tagline.jsx";
-import Testimonials from "../Testimonials/Testimonials.jsx";
-import Footer from "../Footer.jsx";
+import Blogs from "./Blogs/Blogs.jsx";
+import Gyan from "./Gyan.jsx"
+import Navbar from "./Navbar/Navbar.jsx";
+import Tagline from "./Tagline.jsx";
+import Testimonials from "./Testimonials/Testimonials.jsx";
+import Footer from "./Footer.jsx";
 
 const Home = () =>{
     return (

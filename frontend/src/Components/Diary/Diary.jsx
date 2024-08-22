@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../Navbar/Navbar';
 import axios from "../../Api/axios";
-import Modal from './Modal'; 
+import Modal from './Modal';
+import useAuth from '../../Hooks/useAuth'
 
 const Diary = () => {
+
+  const {auth} = useAuth()
+  const[clicked, setClicked] = useState(false)
   const [diaries, setDiaries] = useState([]);
   const [isCreating, setIsCreating] = useState(false); 
   const [isEditing, setIsEditing] = useState(null); 
-  const [editDiary, setEditDiary] = useState({ title: '', entry: '', topic: 'career stress' }); 
+  const [editDiary, setEditDiary] = useState({ title: '', entry: '', topic: 'Select Topic' }); 
   const [topic, setTopic] = useState('');
   const [title, setTitle] = useState('');
   const [entry, setEntry] = useState('');
@@ -17,64 +21,95 @@ const Diary = () => {
   const topics = ['Select Topic', 'career stress', 'financial', 'addiction', 'happy', 'relationships', 'health', 'other'];
 
   const DIARY_URL = '/diary';
+  useEffect(() => {
+    const fetchDiaries = async () => {
+        try {
+            const response = await axios.get(DIARY_URL, {
+              withCredentials: true
+            });
+            setDiaries(response.data);
+            
 
-  const handleAddDiary = () => {
-    setIsCreating(true);
-  };
+        } catch (error) {
+            console.error('Error fetching diaries:', error);
+        }
+    };
+
+    fetchDiaries();
+}, [clicked]);
 
   const handleSaveEntry = async (e) => {
     e.preventDefault();
-
+    const id = auth.id
     const diaryEntry = {
       topic,
       title,
       entry,
+      id
     };
-
     try {
-      const response = await axios.post(DIARY_URL, { 
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(diaryEntry),
+      console.log(diaryEntry)
+      const response = await axios.post(DIARY_URL, 
+        JSON.stringify(diaryEntry),
+        { 
+        headers: {'Content-Type': 'application/json'},
+        withCredentials: true
       });
-
-      if (true) {
-        setDiaries([...diaries, diaryEntry]);
+      const data = response.data;
+      if (data) {
+        setDiaries(diaries)
         setTitle('');
         setEntry('');
-        setTopic('career stress');
+        setTopic('Select Topic');
         setIsCreating(false);
+        setClicked(!clicked)
       } else {
         console.error('Failed to save diary entry.');
-        // Handle error
+        
       }
     } catch (error) {
       console.error('Error:', error);
-      // Handle error
+      
     }
   };
 
-  const handleEditDiary = (index) => {
-    setIsEditing(index);
-    setEditDiary(diaries[index]);
-  };
 
-  const handleSaveEdit = (index) => {
-    const updatedDiaries = [...diaries];
-    updatedDiaries[index] = editDiary;
-    setDiaries(updatedDiaries);
+  const handleSaveEdit = async(index) => {
+    try{
+      const id = auth.id
+      const response = await axios.put(
+        DIARY_URL,
+        JSON.stringify({editDiary,id}),
+        {   params:{index},
+            headers: { 'Content-Type': 'application/json' },
+            withCredentials: true
+        }
+    );
+    console.log(response.data)
+    setClicked(!clicked)
+  }
+  catch(err){
+    console.error(err)
+  }
+
+    
     setIsEditing(null);
   };
 
-  const handleCancelEdit = () => {
-    setIsEditing(null);
-  };
-
-  const handleDeleteDiary = (index) => {
-    const updatedDiaries = diaries.filter((_, i) => i !== index);
-    setDiaries(updatedDiaries);
+  const handleDeleteDiary = async(index) => {
+    const id = auth.id
+    console.log(id, index)
+    try {
+      const response = await axios.delete(DIARY_URL, {
+          data: { userId: id, id :index }, // Include the data here
+          headers: { 'Content-Type': 'application/json' },
+          withCredentials: true
+      });
+    setClicked(!clicked);
+  }
+  catch(err){
+    console.error(err)
+  }
   };
 
   const handleToggleModal = (index) => {
@@ -100,7 +135,7 @@ const Diary = () => {
                     id="topic"
                     className="block w-full border border-yellow-400 rounded-lg py-2 px-3 text-yellow-900"
                     value={topic}
-                    placeholder = "Select Topic"
+                    placeholder="Select Topic"
                     onChange={(e) => setTopic(e.target.value)}
                   >
                     {topics.map((t) => (
@@ -110,7 +145,7 @@ const Diary = () => {
                     ))}
                   </select>
                 </div>
-
+  
                 <div className="mb-4">
                   <input
                     type="text"
@@ -121,7 +156,7 @@ const Diary = () => {
                     onChange={(e) => setTitle(e.target.value)}
                   />
                 </div>
-
+  
                 <div>
                   <textarea
                     id="entry"
@@ -132,7 +167,7 @@ const Diary = () => {
                     onChange={(e) => setEntry(e.target.value)}
                   ></textarea>
                 </div>
-
+  
                 <div className="mt-6 text-center">
                   <button
                     type="submit"
@@ -145,26 +180,26 @@ const Diary = () => {
             </div>
           </div>
         )}
-
+  
         {!isCreating && (
           <div className="py-16">
             <div className="flex justify-between items-center mb-10">
               <h1 className="text-4xl font-bold text-blue-900">My Thoughts</h1>
               <button 
                 className="bg-blue-900 text-xl text-white font-semibold py-2 px-4 rounded-full hover:bg-customYellow hover:text-black" 
-                onClick={handleAddDiary}
+                onClick={() => setIsCreating(true)}
               >
                 Scribble New +
               </button>
             </div>
-
+  
             <div className="grid grid-cols-3 gap-8 mt-16">
               {diaries.map((diary, index) => (
                 <div 
-                  key={index} 
+                  key={diary.id} 
                   className="border border-customBlue bg-blue-100 p-5 pl-4 pr-4 rounded-3xl overflow-hidden"
                 >
-                  {isEditing === index ? (
+                  {isEditing === diary.id ? (
                     <>
                       <div className="mb-4">
                         <select
@@ -180,7 +215,7 @@ const Diary = () => {
                           ))}
                         </select>
                       </div>
-
+  
                       <div className="mb-4">
                         <input
                           type="text"
@@ -190,7 +225,7 @@ const Diary = () => {
                           onChange={(e) => setEditDiary({ ...editDiary, title: e.target.value })}
                         />
                       </div>
-
+  
                       <div>
                         <textarea
                           id="entry"
@@ -200,17 +235,17 @@ const Diary = () => {
                           onChange={(e) => setEditDiary({ ...editDiary, entry: e.target.value })}
                         />
                       </div>
-
+  
                       <div className="mt-4 flex justify-end space-x-2">
                         <button 
                           className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700"
-                          onClick={() => handleSaveEdit(index)}
+                          onClick={() => handleSaveEdit(diary.id)}
                         >
                           Save
                         </button>
                         <button 
                           className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-700"
-                          onClick={handleCancelEdit}
+                          onClick={() => setIsEditing(null)}
                         >
                           Cancel
                         </button>
@@ -225,19 +260,24 @@ const Diary = () => {
                       <div className="mt-4 flex justify-center space-x-4">
                         <button 
                           className="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-700"
-                          onClick={() => handleEditDiary(index)}
+                          onClick={() => {
+                            setIsEditing(diary.id);
+                            setEditDiary(diary);
+                          }}
                         >
                           Edit
                         </button>
                         <button 
                           className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700"
-                          onClick={() => handleDeleteDiary(index)}
+                          onClick={() => handleDeleteDiary(diary.id)}
                         >
                           Delete
                         </button>
                         <button 
                           className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700"
-                          onClick={() => handleToggleModal(index)}
+                          onClick={() => {
+                            handleToggleModal(diary.id);
+                          }}
                         >
                           Read
                         </button>
@@ -252,14 +292,14 @@ const Diary = () => {
         
         <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
           <div>
-            <h2 className="text-2xl font-bold text-blue-900 mb-4">{diaries[expandedDiary]?.title}</h2>
-            <p className="text-gray-700 mb-2"><strong>Topic:</strong> {diaries[expandedDiary]?.topic.charAt(0).toUpperCase() + diaries[expandedDiary]?.topic.slice(1)}</p>
-            <p className="text-gray-800 whitespace-pre-wrap break-words">{diaries[expandedDiary]?.entry}</p>
+            <h2 className="text-2xl font-bold text-blue-900 mb-4">{diaries.find(d => d.id === expandedDiary)?.title}</h2>
+            <p className="text-gray-700 mb-2"><strong>Topic:</strong> {diaries.find(d => d.id === expandedDiary)?.topic.charAt(0).toUpperCase() + diaries.find(d => d.id === expandedDiary)?.topic.slice(1)}</p>
+            <p className="text-gray-800 whitespace-pre-wrap break-words">{diaries.find(d => d.id === expandedDiary)?.entry}</p>
           </div>
         </Modal>
       </div>
     </div>
   );
-};
+}
 
 export default Diary;
