@@ -53,6 +53,7 @@ const Diary = () => {
       const response = await axios.post(DIARY_URL, 
         JSON.stringify(diaryEntry),
         { 
+          // params : id,
         headers: {'Content-Type': 'application/json'},
         withCredentials: true
       });
@@ -120,7 +121,7 @@ const Diary = () => {
 
   return (
     <div className="min-h-screen bg-gray-100">
-      <div className="relative p-16 bg-customYellow text-white">
+      <div className="relative p-16 bg-customYellow">
         <Navbar />
       </div>
       
@@ -293,9 +294,9 @@ const Diary = () => {
         
         <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
           <div>
-            <h2 className="text-2xl font-bold text-blue-900 mb-4">{diaries.find(d => d.id === expandedDiary)?.title}</h2>
+            <h2 className="text-2xl overflow-auto font-bold text-blue-900 mb-4">{diaries.find(d => d.id === expandedDiary)?.title}</h2>
             <p className="text-gray-700 mb-2"><strong>Topic:</strong> {diaries.find(d => d.id === expandedDiary)?.topic.charAt(0).toUpperCase() + diaries.find(d => d.id === expandedDiary)?.topic.slice(1)}</p>
-            <p className="text-gray-800 whitespace-pre-wrap break-words">{diaries.find(d => d.id === expandedDiary)?.entry}</p>
+            <p className="text-gray-800 whitespace-pre-wrap break-words overflow-y-auto h-72">{diaries.find(d => d.id === expandedDiary)?.entry}</p>
           </div>
         </Modal>
       </div>

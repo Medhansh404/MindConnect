@@ -36,7 +36,9 @@ const Login = () => {
       const accessToken = response.data?.accessToken;
       const roles = response.data?.roles;
       const id = response.data?.user_id;
-      setAuth({ id, email, pwd, roles, accessToken });
+      const userName = response.data?.userName;
+
+      setAuth({ userName, id, email, pwd, roles, accessToken });
       setEmail('');
       setPwd('');
       from === '/' ? navigate("/") : navigate(from, { replace: true });
