@@ -14,7 +14,7 @@ const getAllDiary = async (req, res) => {
 
 const createNewDiary = async (req, res) => {
     try {
-        console.log(req.body)
+        // console.log(req.body)
         const newDiary = await prisma.Diary.create({
             data: {
                 entry: req.body.entry,
