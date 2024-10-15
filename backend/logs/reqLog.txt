@@ -10149,3 +10149,9 @@
 20240822	16:49:38	ea46ea3c-5795-4b47-9cfb-00408aad5d1c	POST	http://localhost:3000	/auth
 20240822	16:49:38	81af4a53-a0cc-4931-a331-b015f620064f	GET	http://localhost:3000	/diary
 20240822	16:49:38	2e9f4605-ed74-4a11-a6d8-d9c408de195a	GET	http://localhost:3000	/diary
+20241015	20:04:26	99da6ac0-301d-4d6d-96c7-e185d60cd9ae	OPTIONS	http://localhost:3000	/auth
+20241015	20:04:26	1038aece-85a1-41b3-82f8-12c63466f1d0	POST	http://localhost:3000	/auth
+20241015	20:06:14	51a00fd7-b993-4f92-bfc5-40386d7d6eb6	GET	http://localhost:3000	/diary
+20241015	20:06:14	1adc76f1-f663-4f22-a845-6f79f8b9d195	GET	http://localhost:3000	/diary
+20241015	20:06:27	0d2c17b8-602f-4417-9fcf-00207dfe5ba4	OPTIONS	http://localhost:3000	/diary
+20241015	20:06:27	5905c3ef-8f10-4a2a-8912-a8991a03a3be	POST	http://localhost:3000	/diary
