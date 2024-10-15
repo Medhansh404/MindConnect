@@ -47,6 +47,7 @@ const Diary = () => {
       entry,
       id
     };
+
     try {
       console.log(diaryEntry)
       const response = await axios.post(DIARY_URL, 
