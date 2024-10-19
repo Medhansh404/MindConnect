@@ -1,34 +1,35 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
+import Navbar from './Navbar/Navbar';
+import img from "../assests/stud.jpeg";
 
-const Appointment = () => {
+const ChatLanding = () => {
   return (
-    <div className="bg-blue-900 text-white py-16 px-8">
-      <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center">
+    <div className="min-h-screen bg-gray-100">
+     <div className="relative p-16 bg-customYellow">
+        <Navbar />
+      </div>
+    <div className="relative bg-customBlue top-28 text-white py-16 px-8">
+      <div className="max-w-5xl mx-auto flex flex-col gap-24 md:flex-row items-center">
         {/* Left side content */}
         <div className="md:w-1/2">
           <h1 className="text-3xl md:text-4xl font-bold mb-4">
             Something on your mind?
           </h1>
-          <h2 className="text-2xl md:text-3xl text-purple-300 font-bold mb-6">
+          <h2 className="text-2xl md:text-3xl text-customGreen font-bold mb-6">
             Chat with a peer worker who understands
           </h2>
           <p className="text-lg mb-4">
             Our peer workers have experience with mental health challenges and use this experience to support others.
           </p>
-          <p className="text-lg font-semibold mb-4">
-            We have <span className="text-white">11 sessions</span> available in the next <span className="text-white">3 days</span>
-          </p>
-          <a href="#" className="text-purple-300 underline mb-6 inline-block">
-            See available times
-          </a>
-          <br />
-          <button className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full">
-            Book a free chat
-          </button>
+         
+          <Link to = "/userchat" className="bg-customGreen hover:bg-customYellow hover:text-black text-white font-bold py-2 px-4 rounded-full">
+            Create a New Chat
+          </Link>
         </div>
         {/* Right side image placeholder */}
         <div className="md:w-1/2 mt-8 md:mt-0">
-          <img src="/path/to/your/image.png" alt="Illustration" className="max-w-full h-auto"/>
+          <img src={img} alt="Illustration" className="max-w-full h-auto"/>
         </div>
       </div>
 
@@ -58,7 +59,8 @@ const Appointment = () => {
         </div>
       </div>
     </div>
+    </div>
   );
 };
 
-export default Appointment;
+export default ChatLanding;

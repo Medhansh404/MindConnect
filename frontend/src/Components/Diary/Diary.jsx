@@ -21,6 +21,7 @@ const Diary = () => {
   const topics = ['Select Topic', 'career stress', 'financial', 'addiction', 'happy', 'relationships', 'health', 'other'];
 
   const DIARY_URL = '/diary';
+  
   useEffect(() => {
     const fetchDiaries = async () => {
         try {
