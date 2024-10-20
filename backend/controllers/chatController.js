@@ -1,5 +1,6 @@
 const sessionService = require('../services/sessionService.js');
 
+// Start or find a session
 exports.startSession = async (req, res) => {
     const { user1Id, user2Id } = req.body;
     
@@ -11,17 +12,19 @@ exports.startSession = async (req, res) => {
     }
 };
 
-exports.sendMessage = async (req, res) => {
-    const { sessionId, senderId, content } = req.body;
-
+// Send a message within a session
+exports.sendMessage = async (data) => {
+    const { sessionId, senderId, content } = data;
+    
     try {
         const message = await sessionService.addMessageToSession(sessionId, senderId, content);
-        res.status(200).json(message);
+        return message; 
     } catch (err) {
-        res.status(500).json({ error: err.message });
+        throw new Error(err.message); 
     }
 };
 
+// Get the message history for a session
 exports.getSessionHistory = async (req, res) => {
     const { sessionId } = req.params;
 

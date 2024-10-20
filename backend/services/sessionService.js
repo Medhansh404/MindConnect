@@ -1,5 +1,7 @@
 const Session = require('../model/sessionModel.js');
 const Message = require('../model/messageModel.js');
+const mongoose = require('mongoose');
+
 
 // Create a new session between two users
 exports.createSession = async (user1Id, user2Id) => {
@@ -24,9 +26,9 @@ exports.findOrCreateSession = async (user1Id, user2Id) => {
 // Add a new message to the session
 exports.addMessageToSession = async (sessionId, senderId, content) => {
     const message = new Message({
-        sender: senderId,
+        sender: new mongoose.Types.ObjectId(senderId), 
         content,
-        session: sessionId
+        session: new mongoose.Types.ObjectId(sessionId) 
     });
     const savedMessage = await message.save();
 
@@ -37,6 +39,7 @@ exports.addMessageToSession = async (sessionId, senderId, content) => {
     });
 
     return savedMessage;
+
 };
 
 // Fetch the message history for a session

@@ -3,7 +3,7 @@ const path = require('path');
 const cors = require('cors');
 const http = require('http'); 
 const { Server } = require('socket.io'); 
-
+const mongoose = require('mongoose');
 const app = express();
 const corsOptions = require('./config/corsOptions');
 const { logger } = require('./middleware/logEvents');
@@ -18,7 +18,6 @@ const PORT = process.env.PORT || 8080;
 // Create an HTTP server
 const server = http.createServer(app);
 
-// Set up socket.io with the server
 const io = new Server(server, {
     cors: {
         origin: '*',
@@ -68,29 +67,36 @@ app.all('*', (req, res) => {
 // Error Handler Middleware
 app.use(errorHandler);
 
-// Socket.io connection handling
+const mongoURI = process.env.MongoURI;
+mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log('MongoDB connected'))
+    .catch(err => console.error('MongoDB connection error:', err));
+
+
 io.on('connection', (socket) => {
     console.log('New client connected');
-    
-    // Join a session room
+
     socket.on('joinSession', (sessionId) => {
         socket.join(sessionId);
+        console.log(`Client joined session: ${sessionId}`);
     });
 
-    // Handle sending messages to a session
     socket.on('sendMessage', async (data) => {
         const { sessionId, senderId, content } = data;
-        const message = await chatController.sendMessage({ body: { sessionId, senderId, content } });
 
-        // Broadcast the message to everyone in the session
-        io.to(sessionId).emit('receiveMessage', message);
+        try {
+            const message = await chatController.sendMessage({ sessionId, senderId, content });
+
+            io.to(sessionId).emit('receiveMessage', message);
+        } catch (error) {
+            console.error('Error sending message:', error.message);
+        }
     });
 
-    // Handle disconnection
     socket.on('disconnect', () => {
         console.log('Client disconnected');
     });
 });
 
-// Start the HTTP server, including Express and socket.io
+
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
