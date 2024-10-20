@@ -42,7 +42,7 @@ const Chat = () => {
       <div className="flex justify-between items-center pt-20 px-8 max-w-4xl mx-auto">
       <span className="font-extrabold text-xl">You are talking with Dr. Counselor Jain</span>
       <Link to="/"
-        className="bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 transition duration-300"
+        className="bg-red-500 text-white font-bold px-4 py-2 rounded-lg shadow-lg hover:bg-orange-500 hover:shadow-xl"
       >
         Leave Chat
       </Link>

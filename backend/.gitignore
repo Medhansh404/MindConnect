@@ -8,6 +8,10 @@ prisma
 /.pnp
 .pnp.js
 
+/logs
+logs
+/.logs
+
 # testing
 /coverage
 

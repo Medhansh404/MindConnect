@@ -8,6 +8,7 @@ import icon from "../../assests/menu.png";
 const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
+
   const handleMouseEnter = () => {
     setIsDropdownOpen(true);
   };
@@ -29,6 +30,7 @@ const Navbar = () => {
   const { auth } = useAuth();
   const id = auth.id;
   const name = auth.userName;
+  const roles = auth.roles;
 
   return (
     <div>
@@ -55,6 +57,8 @@ const Navbar = () => {
             >
               Blogs
             </NavLink>
+
+            {roles == 1910 ? (
             <NavLink
               to="/diary"
               className={({ isActive }) => 
@@ -64,8 +68,14 @@ const Navbar = () => {
               }
             >
               Scribble
-            </NavLink>
-            <NavLink
+            </NavLink>) : 
+            (
+              <></>
+            )}
+
+            
+            {roles == 1910 ? 
+                (<NavLink
               to="/chat"
               className={({ isActive }) => 
                 `text-md font-medium px-4 py-2 rounded-full transition-colors link-container ${
@@ -75,8 +85,8 @@ const Navbar = () => {
             >
               Chat With Expert
             </NavLink>
-
-            <NavLink
+                 ) :(
+              <NavLink
               to="/docchat"
               className={({ isActive }) => 
                 `text-md font-medium px-4 py-2 rounded-full transition-colors link-container ${
@@ -84,8 +94,12 @@ const Navbar = () => {
                 }`
               }
             >
-              Counselor Chat
+              Chat
             </NavLink>
+              )}
+
+            
+          
 
             <NavLink
               to="/about"

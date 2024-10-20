@@ -14,7 +14,7 @@ import Blogs from "./Components/Blogs/Blogs";
 import Diary from "./Components/Diary/Diary";
 import './index.css'; 
 import RequireAuth from "./Components/RequireAuth"
-import Profile from "./Components/Navbar/Profile";
+import Profile from "./Components/Profile";
 const App = () => {
   return (
     
@@ -27,16 +27,22 @@ const App = () => {
             <Route path="/about" element={<About />} />
             <Route path="/faq" element={<Faq />} />
             <Route path="/blogs" element={<Blogs />} />
-            <Route path="/docchat" element={<DocChat />} />
             <Route path='profile' element={<Profile />} />
             
               
-              {/*Protected Routes 1910: User*/ } 
+              {/*Protected Routes 1910: User */}
               <Route element={<RequireAuth allowedRoles={[1910]}/>}>
               <Route path="/diary" element={<Diary />} />
               <Route path='/chat' element={<Chat />} />
               <Route path='userchat' element={<UserChat />} />
               </Route>           
+
+              {/* 1911:Counselor */}
+              <Route element={<RequireAuth allowedRoles={[1911]}/>}>
+              <Route path="/docchat" element={<DocChat />} />
+              <Route path='/chat' element={<Chat />} />
+              
+              </Route>
 
               {/* catch all*/}
               <Route path="*" element={<></>} />

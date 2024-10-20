@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import Navbar from './Navbar/Navbar';
+// import Footer from './Footer';
 import img from "../assests/stud.jpeg";
 
 const ChatLanding = () => {
