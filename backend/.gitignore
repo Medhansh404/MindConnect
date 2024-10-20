@@ -10,7 +10,9 @@ prisma
 
 # testing
 /coverage
-
+logs
+/logs
+./logs
 # production
 /build
 # misc
