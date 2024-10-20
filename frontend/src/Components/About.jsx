@@ -37,12 +37,12 @@ const Team = [
 
 const About = () => {
     return (
-        <div className="h-auto">
-            <div className="relative -top-9 p-16">
+        <div className="min-h-screen">
+            <div className="relative p-16 bg-customYellow">
                 <Navbar />
             </div>
             <div>
-            <section className="w-full text-darkBlue py-16 px-6">
+            <section className="w-full text-darkBlue py-16 px-6 pt-20">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-20 max-w-6xl mx-auto">
                 {/* Text Content */}
                 <div className="flex flex-col justify-center gap-6">
