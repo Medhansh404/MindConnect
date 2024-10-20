@@ -6,17 +6,23 @@ import Navbar from "./Navbar/Navbar.jsx";
 import Tagline from "./Tagline.jsx";
 import Testimonials from "./Testimonials/Testimonials.jsx";
 import Footer from "./Footer.jsx";
+import useAuth from '../Hooks/useAuth.js';
 
 const Home = () =>{
+  const {auth} = useAuth();
+  const userName = auth.userName;
     return (
      
       <div> 
       
       {/* header */}
       <div className="pt-3 pb-3 text-center bg-white"> 
-      <span><Link to = "/Register" className="font-bold">
+      {userName ? <span className='font-bold'>Welcome {userName}!!</span> : (
+        <span><Link to = "/Register" className="font-bold">
         Sign up!</Link> Today to take control of your mental well-being!
       </span>
+      )}
+      
       </div>
       
       {/* Navbar */}

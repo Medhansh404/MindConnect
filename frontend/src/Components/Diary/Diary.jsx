@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../Navbar/Navbar';
+import Footer from "../Footer";
 import axios from "../../Api/axios";
 import Modal from './Modal';
 import useAuth from '../../Hooks/useAuth'
@@ -109,6 +110,12 @@ const Diary = () => {
           withCredentials: true
       });
     setClicked(!clicked);
+    if(response){
+      console.log("Diary Deleted Successfully");
+    }
+    else{
+      console.log("Problem Deletinf Diary");
+    }
   }
   catch(err){
     console.error(err)
@@ -126,7 +133,7 @@ const Diary = () => {
         <Navbar />
       </div>
       
-      <div className="container mx-auto p-6">
+      <div className="container mx-auto p-6 min-h-screen">
         {isCreating && (
           <div className="min-h-screen py-8 px-4">
             <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-sm p-8 shadow-black">
@@ -300,6 +307,9 @@ const Diary = () => {
             <p className="text-gray-800 whitespace-pre-wrap break-words overflow-y-auto h-72">{diaries.find(d => d.id === expandedDiary)?.entry}</p>
           </div>
         </Modal>
+      </div>
+      <div>
+       <Footer />
       </div>
     </div>
   );

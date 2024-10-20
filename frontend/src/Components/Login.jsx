@@ -37,8 +37,11 @@ const Login = () => {
       const roles = response.data?.roles;
       const id = response.data?.user_id;
       const userName = response.data?.userName;
+      const gender = response.data?.gender;
+      const dob = response.data?.dob;
+      const mobile = response.data?.mobile;
 
-      setAuth({ userName, id, email, pwd, roles, accessToken });
+      setAuth({ userName, id, email, pwd, roles, accessToken, gender, dob, mobile });
       setEmail('');
       setPwd('');
       from === '/' ? navigate("/") : navigate(from, { replace: true });

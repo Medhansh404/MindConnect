@@ -8,7 +8,7 @@ const handleNewUser = async (req, res) => {
     
     try {
         // encrypt the password
-        const { name, email, pwd } = req.body;
+        // const { name, email, pwd } = req.body;
         const hashedPwd = await bcrypt.hash(pwd, 10);
         console.log(name, email, pwd);
 
@@ -26,6 +26,29 @@ const handleNewUser = async (req, res) => {
     } catch (err) {
         res.status(500).json({ 'message': err.message });
     }
-}
+};
 
-module.exports = { handleNewUser };
+const updateUser = async (req,res) => {
+    const {userName, email, gender, dob, mobile, id} = req.body;
+    console.log(req.body);
+
+    try{
+        const updatedUser = await prisma.user.update({
+            where : {id:id},
+            data : {
+                name:userName,
+                email,
+                gender,
+                dob,
+                mobile,
+            },
+        });
+        res.status(201).json({ 'success': `Updated Changes Successfully` });
+    }
+    catch(error){
+        console.error(error);
+        res.status(500).json({ error: "Failed to save changes" });
+    }
+};
+
+module.exports = { handleNewUser, updateUser };
