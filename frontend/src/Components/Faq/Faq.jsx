@@ -50,11 +50,11 @@ const faqs = [
 
 const Faq = () => {
     return (
-        <div className="h-auto">
-            <div className="relative -top-9 bg-customYellow">
+        <div className="min-h-screen">
+            <div className="relative bg-customYellow">
                 <Navbar />
             </div>
-            <div className="h-80 bg-customYellow text-center  pt-48 ">
+            <div className="h-96 bg-customYellow text-center pt-64 ">
                 <span className="font-extrabold text-8xl">FAQs</span>
             </div>
             <div>
