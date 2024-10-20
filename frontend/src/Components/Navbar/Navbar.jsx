@@ -67,7 +67,6 @@ const Navbar = () => {
             </NavLink>
             <NavLink
               to="/chat"
-              to="/appointment"
               className={({ isActive }) => 
                 `text-md font-medium px-4 py-2 rounded-full transition-colors link-container ${
                   isActive ? 'bg-customYellow text-black font-semibold' : 'text-gray-700 hover:bg-blue-900 hover:text-white'
