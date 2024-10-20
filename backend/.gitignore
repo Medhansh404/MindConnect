@@ -13,8 +13,6 @@ prisma
 
 # production
 /build
-/logs
-logs
 # misc
 .DS_Store
 .env.local
