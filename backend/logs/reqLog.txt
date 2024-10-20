@@ -11,3 +11,7 @@
 20241015	23:55:34	c0ae3e5f-559e-4353-82d4-19de990f1a69	POST	http://localhost:3000	/auth
 20241016	00:03:08	0e194d59-2795-487a-819c-0ad82b489f4c	OPTIONS	http://localhost:3000	/auth
 20241016	00:03:08	063da37f-17e1-4036-9c0e-6cf05e6cff97	POST	http://localhost:3000	/auth
+20241020	11:08:16	ab0e7dc9-1f47-4cf5-8719-ab187dc61c55	OPTIONS	http://localhost:3000	/auth
+20241020	11:08:16	a6a59e44-5c17-404b-bb4d-fca9a26ae4ab	POST	http://localhost:3000	/auth
+20241020	11:11:11	745ce702-20b6-4496-a6da-588a755f4696	OPTIONS	http://localhost:3000	/auth
+20241020	11:11:11	68f3361b-5961-4d35-999e-abebfc16618b	POST	http://localhost:3000	/auth
