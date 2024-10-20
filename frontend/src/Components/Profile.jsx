@@ -1,0 +1,222 @@
+import React, { useState, useRef } from "react";
+import Navbar from "./Navbar/Navbar";
+import useAuth from "../Hooks/useAuth";
+import axios from "../Api/axios";
+
+const Profile = () => {
+    const { setAuth,auth } = useAuth();
+    const [isEditing, setIsEditing] = useState(false);
+    const roles = auth.roles;
+    const accessToken = auth.accessToken
+    const pwd = auth.pwd
+    const id = auth.id;
+    const LOGOUT_URL = '/logoutController';
+    const PROFILE = '/register';
+    const errRef = useRef();
+
+    const [userName, setUserName] = useState(auth.userName);
+    const [email, setEmail] = useState(auth.email);
+    const [mobile, setMobile] = useState(auth.mobile); 
+    const [gender, setGender] = useState(auth.gender);
+    const [dob, setDob] = useState(auth.dob);
+    const [errMssg, setErrMssg] = useState('');
+
+    const handleLogout = async () => {
+        try{
+            const response = await axios.post(LOGOUT_URL, {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            })
+            if(response.ok) {
+                console.log("Logged Out SuccessFully");
+            }
+            else {
+                console.log("Problem Logging Out");
+            }
+        }
+        catch (error){
+            console.error("Error:", error);
+        }
+    }
+
+    const handleSaveChanges = async (e) => {
+        console.log(auth)
+        e.preventDefault();
+
+        try {
+            const response = await axios.put(PROFILE,
+              JSON.stringify({ userName, email, gender, dob, mobile, id }),
+              {
+                headers: { 'Content-Type': 'application/json' },
+                withCredentials: true
+              }
+            );
+            if(response.status === 200) {
+              console.log("Changes Saved Successfully");
+            }
+            
+            setAuth({ userName, id, email, pwd, roles, accessToken, gender, dob, mobile });
+            setIsEditing(false);
+          }
+          catch (error) {
+            if (!error?.response) {
+              setErrMssg('No Server Response');
+            }
+            else if (error.response?.status === 400) {
+              setErrMssg('Missing Username or Password');
+            }
+            else if (error.response?.status === 401) {
+              setErrMssg('Unauthorized, Contact administration or try again');
+            }
+            else {
+              setErrMssg('Register Failed, Try again');
+            }
+          }
+          setErrMssg("");
+    };
+
+    return (
+        <div className="min-h-screen bg-gray-100">
+            <div className="relative p-16 bg-gradient-to-r from-customYellow via-yellow-200 to-customYellow">
+                <Navbar />
+            </div>
+            <div className="mx-auto pt-20">
+                <div className="relative max-w-4xl mx-auto bg-customBlue rounded-lg shadow-xl p-8 overflow-hidden">
+                    {/* Background Pattern */}
+                    <div className="absolute inset-0 opacity-40 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+
+                    <h1 className="text-4xl font-extrabold text-center text-white mb-8 z-10 relative">
+                        Profile Information
+                    </h1>
+                    {errMssg && <p ref={errRef} className="text-red-500 text-center">{errMssg}</p>}
+                    <table className="min-w-full border-collapse relative z-10">
+                        <tbody>
+                            <tr className="hover:bg-teal-700/80">
+                                <td className="border border-gray-400 p-4 text-customYellow font-semibold">Name</td>
+                                <td className="border border-gray-400 p-4 text-white">
+                                    {isEditing ? (
+                                        <input
+                                            type="text"
+                                            className="p-2 text-customBlue"
+                                            value={userName}
+                                            onChange={(e) => setUserName(e.target.value)}
+                                        />
+                                    ) : (
+                                        userName
+                                    )}
+                                </td>
+                            </tr>
+                            <tr className="hover:bg-teal-700/80">
+                                <td className="border border-gray-400 p-4 text-customYellow font-semibold">Email</td>
+                                <td className="border border-gray-400 p-4 text-white">
+                                    {isEditing ? (
+                                        <input
+                                            type="email"
+                                            className="p-2 text-customBlue"
+                                            value={email}
+                                            onChange={(e) => setEmail(e.target.value)}
+                                        />
+                                    ) : (
+                                        email
+                                    )}
+                                </td>
+                            </tr>
+                            <tr className="hover:bg-teal-700/80">
+                                <td className="border border-gray-400 p-4 text-customYellow font-semibold">Role</td>
+                                <td className="border border-gray-400 p-4 text-white">
+                                    {roles == 1911 ? "Counselor" : "User"}
+                                </td>
+                            </tr>
+                            <tr className="hover:bg-teal-700/80">
+                                <td className="border border-gray-400 p-4 text-customYellow font-semibold">Gender</td>
+                                <td className="border border-gray-400 p-4 text-white">
+                                {isEditing ? (
+                                        <input
+                                            type="text"
+                                            className="p-2 text-customBlue"
+                                            value={gender}
+                                            onChange={(e) => setGender(e.target.value)}
+                                        />
+                                    ) : (
+                                        gender
+                                    )}
+                                </td>
+                            </tr>
+                            <tr className="hover:bg-teal-700/80">
+                                <td className="border border-gray-400 p-4 text-customYellow font-semibold">Age</td>
+                                <td className="border border-gray-400 p-4 text-white">
+                                    21
+                                </td>
+                            </tr>
+                            <tr className="hover:bg-teal-700/80">
+                                <td className="border border-gray-400 p-4 text-customYellow font-semibold">DOB</td>
+                                <td className="border border-gray-400 p-4 text-white">
+                                    {isEditing ? (
+                                            <input
+                                                type="text"
+                                                className="p-2 text-customBlue"
+                                                value={dob}
+                                                onChange={(e) => setDob(e.target.value)}
+                                            />
+                                        ) : (
+                                            dob
+                                        )}
+                                </td>
+                            </tr>
+                            <tr className="hover:bg-teal-700/80">
+                                <td className="border border-gray-400 p-4 text-customYellow font-semibold">Phone</td>
+                                <td className="border border-gray-400 p-4 text-white">
+                                    {isEditing ? (
+                                        <input
+                                            type="text"
+                                            className="p-2 text-customBlue"
+                                            value={mobile}
+                                            onChange={(e) => setMobile(e.target.value)}
+                                        />
+                                    ) : (
+                                        mobile
+                                    )}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div className="flex justify-between mt-8 relative z-10">
+                        {isEditing ? (
+                            <>
+                                <button
+                                    className="bg-green-500 text-white font-bold px-6 py-3 rounded-lg shadow-lg hover:bg-green-600"
+                                    onClick={handleSaveChanges}
+                                >
+                                    Save Changes
+                                </button>
+                                <button
+                                    className="bg-gray-500 text-white font-bold px-6 py-3 rounded-lg shadow-lg hover:bg-gray-600"
+                                    onClick={() => setIsEditing(false)}
+                                >
+                                    Cancel
+                                </button>
+                            </>
+                        ) : (
+                            <button
+                                className="bg-customYellow text-customBlue font-bold px-6 py-3 rounded-lg shadow-lg hover:bg-teal-400"
+                                onClick={() => setIsEditing(true)}
+                            >
+                                Edit Profile
+                            </button>
+                        )}
+                        <button 
+                            className="bg-red-500 text-white font-bold px-6 py-3 rounded-lg shadow-lg hover:bg-orange-500"
+                            onClick = {handleLogout}
+                            >
+                            Logout
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default Profile;
