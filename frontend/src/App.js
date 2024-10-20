@@ -7,6 +7,8 @@ import About from "./Components/About";
 import Chat from "./Components/ChatLanding";
 import UserChat from "./Components/UserChat";
 import DocChat from "./Components/DocChat";
+
+import Appointment from "./Components/Chat";
 // import "./App.css";
 import './index.css'; 
 import Faq from "./Components/Faq/Faq";
@@ -28,13 +30,14 @@ const App = () => {
             <Route path="/faq" element={<Faq />} />
             <Route path="/blogs" element={<Blogs />} />
             <Route path='profile' element={<Profile />} />
-            
+
               
               {/*Protected Routes 1910: User */}
               <Route element={<RequireAuth allowedRoles={[1910]}/>}>
               <Route path="/diary" element={<Diary />} />
               <Route path='/chat' element={<Chat />} />
               <Route path='userchat' element={<UserChat />} />
+              <Route path='/appointment' element={<Appointment />} />
               </Route>           
 
               {/* 1911:Counselor */}
