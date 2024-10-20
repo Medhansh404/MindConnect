@@ -67,7 +67,7 @@ app.all('*', (req, res) => {
 // Error Handler Middleware
 app.use(errorHandler);
 
-const mongoURI = 'mongodb+srv://21ucs060:Devansh1910@cluster0.2uote.mongodb.net/MindConnect';
+const mongoURI = process.env.MongoURI;
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.error('MongoDB connection error:', err));
