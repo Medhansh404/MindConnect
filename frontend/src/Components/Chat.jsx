@@ -46,8 +46,6 @@ const Chat = ({ sessionId = '613f8f8e3c6e2b001f012345' }) => {
         time: getCurrentTime(), 
       };
       socketRef.current.emit('sendMessage', messageData);
-
-      setMessages((prevMessages) => [...prevMessages, { ...messageData, sender: 'user' }]);
       setUserMessage('');
     }
   };
@@ -73,8 +71,10 @@ const Chat = ({ sessionId = '613f8f8e3c6e2b001f012345' }) => {
             {messages.length === 0 ? (
               <p className="text-gray-500 text-center">No messages yet</p>
             ) : (
+
               messages.map((message, index) => (
                 <div key={index} className={`mb-4 flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
+                {/* <div className="absolute inset-0 opacity-40 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div> */}
                   <div className={`${message.sender === 'user' ? 'bg-customYellow text-black' : 'bg-customBlue text-white'} rounded-lg p-3 max-w-xs`} style={{ wordBreak: 'break-word' }}>
                     <p>{message.content}</p>  {/* Changed to 'content' */}
                     <span className="text-xs text-gray-500">{message.time}</span>
