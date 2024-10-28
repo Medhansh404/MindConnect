@@ -12,6 +12,8 @@ const credentials = require('./middleware/credentials');
 const verifyJWT = require('./middleware/verifyJWT');
 const cookieParser = require('cookie-parser');
 const chatController = require('./controllers/chatController'); // Assuming your chatController is in this path
+const Message = require('./model/messageModel.js');
+const { isDataView } = require('util/types');
 
 const PORT = process.env.PORT || 8080;
 
@@ -68,7 +70,7 @@ app.all('*', (req, res) => {
 app.use(errorHandler);
 
 const mongoURI = process.env.MongoURI;
-mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(mongoURI)
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.error('MongoDB connection error:', err));
 
@@ -76,26 +78,54 @@ mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
 io.on('connection', (socket) => {
     console.log('New client connected');
 
-    socket.on('joinSession', (sessionId) => {
-        socket.join(sessionId);
-        console.log(`Client joined session: ${sessionId}`);
-    });
-
-    socket.on('sendMessage', async (data) => {
-        const { sessionId, senderId, content } = data;
-
+    socket.on('joinSession', async (userId, callback) => {
         try {
-            const message = await chatController.sendMessage({ sessionId, senderId, content });
-
-            io.to(sessionId).emit('receiveMessage', message);
-        } catch (error) {
-            console.error('Error sending message:', error.message);
+            const sessionId = await chatController.startSession(userId)
+            socket.join(sessionId);
+            console.log(`Client joined session: ${sessionId}`);
+            callback(sessionId);
+        }
+        catch(err){
+            console.log(`The sessionId is not being made because ${err}`)
         }
     });
 
-    socket.on('disconnect', () => {
-        console.log('Client disconnected');
-    });
+const sessionMessages = new Map();
+
+socket.on('sendMessage', (data) => {
+    const { sessionId, senderId, content } = data;
+    const message = data;
+
+    if (!sessionMessages.has(sessionId)) {
+        sessionMessages.set(sessionId, []);
+    }
+    sessionMessages.get(sessionId).push(message);
+    console.log(message)
+    io.emit('receiveMessage', message);
+});
+
+socket.on('saveMessage', async (sessionId) => {
+    const id = sessionId;
+
+    if (sessionMessages.has(id)) {
+        const messages = sessionMessages.get(id);
+
+        try {
+            for (const msg of messages) {
+                await chatController.sendMessage({ 
+                    id, 
+                    senderId: msg.senderId, 
+                    content: msg.content, 
+                    timestamp: msg.time 
+                });
+            }
+        } catch (error) {
+            console.error('Error saving messages on disconnect:', error.message);
+        }
+
+        sessionMessages.delete(sessionId);
+    }
+});
 });
 
 

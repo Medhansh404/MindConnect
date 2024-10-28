@@ -1,14 +1,14 @@
 const sessionService = require('../services/sessionService.js');
 
 // Start or find a session
-exports.startSession = async (req, res) => {
-    const { user1Id, user2Id } = req.body;
+exports.startSession = async (userId) => {
+    const user1Id = userId;
     
     try {
-        const session = await sessionService.findOrCreateSession(user1Id, user2Id);
-        res.status(200).json(session);
+        const sessionId = await sessionService.findOrCreateSession(user1Id);
+        return sessionId;
     } catch (err) {
-        res.status(500).json({ error: err.message });
+        throw new Error(err.message); 
     }
 };
 
