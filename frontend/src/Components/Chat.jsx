@@ -4,26 +4,37 @@ import io from "socket.io-client";
 import useAuth from '../Hooks/useAuth';
 
 
-const Chat = ({ sessionId = '613f8f8e3c6e2b001f012345' }) => {
-  const [messages, setMessages] = useState([]);   // Holds messages
-  const [userMessage, setUserMessage] = useState('');   // Current message typed by user
-  const chatBoxRef = useRef(null);   // To scroll chat box
-  const socketRef = useRef(null);    // For WebSocket connection
+const Chat = () => {
+  const [messages, setMessages] = useState([]); 
+  const [userMessage, setUserMessage] = useState('');  
+  const chatBoxRef = useRef(null);  
+  const socketRef = useRef(null); 
+  const [sessionId, setId] = useState('')  
   const {auth} = useAuth();
   useEffect(() => {
     // Connect to the WebSocket server
     socketRef.current = io("http://localhost:8080");
 
     // Join the specific chat session room
-    socketRef.current.emit('joinSession', sessionId);
+    socketRef.current.emit('joinSession', auth.id, 
+      (response)=>{
+        if (response.error) {
+          console.error('Error joining session:', response.error);
+    }
+      else{
+        setId(response);
+      }
+    });
 
     // Listen for incoming messages
-    socketRef.current.on("receiveMessage", (message) => {
-      setMessages((prevMessages) => [...prevMessages, { ...message, sender: 'user' }]);
+    socketRef.current.on('receiveMessage', (message) => {
+      //console.log(message)
+    setMessages((prevMessages) => [...prevMessages, { ...message}]);
     });
 
     // Cleanup the socket connection on component unmount
     return () => {
+      socketRef.current.emit('saveMessage');
       socketRef.current.disconnect();
     };
   }, []); 
@@ -36,7 +47,6 @@ const Chat = ({ sessionId = '613f8f8e3c6e2b001f012345' }) => {
 
   // Handle sending the message
   const handleSendMessage = () => {
-    console.log(messages)
     const senderId = auth.id
     if (userMessage.trim() !== '') {
       const messageData = {
@@ -46,8 +56,7 @@ const Chat = ({ sessionId = '613f8f8e3c6e2b001f012345' }) => {
         time: getCurrentTime(), 
       };
       socketRef.current.emit('sendMessage', messageData);
-
-      setMessages((prevMessages) => [...prevMessages, { ...messageData, sender: 'user' }]);
+      //setMessages((prevMessages) => [...prevMessages, { ...messageData}]);
       setUserMessage('');
     }
   };
@@ -71,11 +80,14 @@ const Chat = ({ sessionId = '613f8f8e3c6e2b001f012345' }) => {
         <div className="max-w-4xl mx-auto">
           <div ref={chatBoxRef} className="bg-white rounded-lg shadow-lg p-6 h-96 overflow-y-auto mb-4">
             {messages.length === 0 ? (
+              
               <p className="text-gray-500 text-center">No messages yet</p>
             ) : (
               messages.map((message, index) => (
-                <div key={index} className={`mb-4 flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
-                  <div className={`${message.sender === 'user' ? 'bg-customYellow text-black' : 'bg-customBlue text-white'} rounded-lg p-3 max-w-xs`} style={{ wordBreak: 'break-word' }}>
+                <div key={index} 
+                        className={`mb-4 flex ${message.senderId === auth.id ? 'justify-end' : 'justify-start'}`}>
+
+                  <div className={`${message.senderId === auth.id ? 'bg-customYellow text-black' : 'bg-customBlue text-white'} rounded-lg p-3 max-w-xs`} style={{ wordBreak: 'break-word' }}>
                     <p>{message.content}</p>  {/* Changed to 'content' */}
                     <span className="text-xs text-gray-500">{message.time}</span>
                   </div>
