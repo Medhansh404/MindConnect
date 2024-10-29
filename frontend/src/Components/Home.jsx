@@ -11,6 +11,7 @@ import useAuth from '../Hooks/useAuth.js';
 const Home = () =>{
   const {auth} = useAuth();
   const userName = auth.userName;
+
     return (
      
       <div> 
@@ -33,7 +34,7 @@ const Home = () =>{
         <Tagline />
         <div className="py-5 px-5 bg-customGreen"></div>
       </div>
-      <Blogs />
+      <Blogs limit = {3} />
       <Gyan />
       
       <br />

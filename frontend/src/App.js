@@ -17,11 +17,11 @@ import Diary from "./Components/Diary/Diary";
 import './index.css'; 
 import RequireAuth from "./Components/RequireAuth"
 import Profile from "./Components/Profile";
+import Navbar from "./Components/Navbar/Navbar";
 const App = () => {
   return (
     
       <div className="app">
-        
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/login' element={<Login />}/>

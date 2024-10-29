@@ -9,6 +9,7 @@ const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
 
+
   const handleMouseEnter = () => {
     setIsDropdownOpen(true);
   };
@@ -27,6 +28,7 @@ const Navbar = () => {
     };
   }, []);
 
+
   const { auth } = useAuth();
   const id = auth.id;
   const name = auth.userName;
@@ -34,7 +36,8 @@ const Navbar = () => {
 
   return (
     <div>
-      <nav className="absolute left-10 right-10 top-20 grid rounded-full text-darkBlue shadow-2xl bg-white">
+      <nav
+        className="absolute left-10 right-10 top-20 grid rounded-full text-darkBlue shadow-2xl bg-white">
         <div className="container mx-auto flex justify-between items-center p-2">
           {/* Logo */}
           <NavLink aria-label="Go to homepage" to="/">

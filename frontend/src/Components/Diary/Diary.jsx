@@ -18,6 +18,7 @@ const Diary = () => {
   const [entry, setEntry] = useState('');
   const [expandedDiary, setExpandedDiary] = useState(null); 
   const [isModalOpen, setIsModalOpen] = useState(false); 
+  const [loading, setLoading] = useState(false);
 
   const topics = ['Select Topic', 'career stress', 'financial', 'addiction', 'happy', 'relationships', 'health', 'other'];
 
@@ -42,6 +43,7 @@ const Diary = () => {
 
   const handleSaveEntry = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const id = auth.id
     const diaryEntry = {
       topic,
@@ -75,10 +77,14 @@ const Diary = () => {
       console.error('Error:', error);
       
     }
+    finally{
+      setLoading(false);
+    }
   };
 
 
   const handleSaveEdit = async(index) => {
+    setLoading(true);
     try{
       const id = auth.id
       const response = await axios.put(
@@ -95,6 +101,9 @@ const Diary = () => {
   catch(err){
     console.error(err)
   }
+  finally{
+    setLoading(false);
+  }
 
     
     setIsEditing(null);
@@ -102,7 +111,7 @@ const Diary = () => {
 
   const handleDeleteDiary = async(index) => {
     const id = auth.id
-    console.log(id, index)
+    setLoading(true);
     try {
       const response = await axios.delete(DIARY_URL, {
           data: { userId: id, id :index }, // Include the data here
@@ -119,6 +128,9 @@ const Diary = () => {
   }
   catch(err){
     console.error(err)
+  }
+  finally{
+    setLoading(false);
   }
   };
 
@@ -183,7 +195,11 @@ const Diary = () => {
                     type="submit"
                     className="bg-blue-900 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-800"
                   >
-                    Let It Out
+                    {loading ? (
+                        <div className="loader"></div> // Replace with a spinner or loading animation
+                    ) : (
+                        "Let It Out"
+                    )}
                   </button>
                 </div>
             </form>
@@ -251,13 +267,17 @@ const Diary = () => {
                           className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700"
                           onClick={() => handleSaveEdit(diary.id)}
                         >
-                          Save
+                          {loading ? (
+                              <div className="loader"></div> // Replace with a spinner or loading animation
+                          ) : (
+                              "SAVE"
+                          )}
                         </button>
                         <button 
                           className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-700"
                           onClick={() => setIsEditing(null)}
                         >
-                          Cancel
+                          CANCEL
                         </button>
                       </div>
                     </>
@@ -281,7 +301,11 @@ const Diary = () => {
                           className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700"
                           onClick={() => handleDeleteDiary(diary.id)}
                         >
-                          Delete
+                          {loading ? (
+                              <div className="loader"></div> // Replace with a spinner or loading animation
+                          ) : (
+                              "Delete"
+                          )}
                         </button>
                         <button 
                           className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700"

@@ -1,28 +1,29 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import logo from "../assests/logo_foot.png";
 
-function Footer() {
+const Footer = () => {
   return (
     <footer className="bg-black text-white py-9">
       <div className="container mx-auto flex flex-wrap justify-between">
         {/* Logo and App Links */}
         <div className="flex flex-col items-start">
-          <a aria-label="Go to homepage" href="/">
+          <Link aria-label="Go to homepage" to="/">
             <img src={logo} alt="resume" 
             className="relative -top-5 h-15 w-48 pb-4" 
             style={{ color: 'transparent' }} 
               loading="lazy"
             />
-          </a>
+          </Link>
         </div>
 
         <div>
           <ul className='text-lg font-bold flex flex-row space-x-4'>
-            <li><a href="/" className="hover:underline">Chat With Expert</a></li>
-            <li><a href="/blogs" className="hover:underline">Blogs</a></li>
-            <li><a href="/faq" className="hover:underline">FAQs</a></li>
-            <li><a href="/about" className="hover:underline">About Us</a></li>
-            <li><a href="/diary" className="hover:underline">Scribble</a></li>
+            <li><Link to ="chat" className="hover:underline">Chat With Expert</Link></li>
+            <li><Link to ="/blogs" className="hover:underline">Blogs</Link></li>
+            <li><Link to ="/faq" className="hover:underline">FAQs</Link></li>
+            <li><Link to ="/about" className="hover:underline">About Us</Link></li>
+            <li><Link to ="/diary" className="hover:underline">Scribble</Link></li>
           </ul>
         </div>
 
