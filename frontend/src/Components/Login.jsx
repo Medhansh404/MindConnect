@@ -47,7 +47,9 @@ const Login = () => {
       setAuth({ userName, id, email, pwd, roles, accessToken, gender, dob, mobile });
       setEmail('');
       setPwd('');
-      from === '/' ? navigate("/") : navigate(from, { replace: true });
+      // from === '/login' ? navigate
+      console.log(from);
+      from == ('/' || "/login") ? navigate("/") : navigate(from, { replace: true });
     }
     catch (error) {
       if (!error?.response) {

@@ -3,6 +3,7 @@ import Navbar from "./Navbar/Navbar";
 import useAuth from "../Hooks/useAuth";
 import axios from "../Api/axios";
 import { useNavigate } from 'react-router-dom';
+import Footer from "./Footer";
 
 
 const Profile = () => {
@@ -53,7 +54,7 @@ const Profile = () => {
                     withCredentials: true // Ensures cookies are sent
                 }
             );
-            if (response.status === 204) {
+            if (response) {
                 console.log("Logged Out Successfully");
                 setAuth({});  // Clear auth context or user state 
                 navigate('/');  // Redirect to login page
@@ -268,6 +269,9 @@ const Profile = () => {
                         </button>
                     </div>
                 </div>
+            </div>
+            <div className="mt-5">
+            <Footer />
             </div>
         </div>
     );

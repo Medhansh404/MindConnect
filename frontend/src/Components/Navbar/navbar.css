@@ -19,21 +19,83 @@
     border-radius: 9999px; /* Fully round the background */
   }
   
-  /* .link-container:hover::before {
-    transform: scaleX(1);
-  } */
-  
-  /* .link-container:hover::before {
-    transform-origin: right;
-  } */
-  
-  /* .link-container:hover ~ .link-container::before {
-    transform-origin: left;
-    transform: scaleX(1);
-  } */
+  /*<div className="sm:hidden absolute left-0 right-0 bg-white border-t border-gray-300 shadow-lg z-50">
+              <ul className="space-y-4 py-4 px-6">
+                <li>
+                  <NavLink
+                    to="/blogs"
+                    className="text-md font-medium hover:bg-gray-200 px-4 py-2 block rounded-full"
+                  >
+                    Blogs
+                  </NavLink>
+                </li>
 
-  /* .link-container:hover{
-    transform: scale(1); /* Adjust the scale factor as needed for the size increase */
-    /* box-shadow: 0 0 10px 5px rgba(102, 28, 186, 0.7); Adjust the color and size as needed */
-  
-   
+                {roles === 1910 && (
+                  <li>
+                    <NavLink
+                      to="/diary"
+                      className="text-md font-medium hover:bg-gray-200 px-4 py-2 block rounded-full"
+                    >
+                      Scribble
+                    </NavLink>
+                  </li>
+                )}
+
+                {roles === 1910 ? (
+                  <li>
+                    <NavLink
+                      to="/chat"
+                      className="text-md font-medium hover:bg-gray-200 px-4 py-2 block rounded-full"
+                    >
+                      Chat With Expert
+                    </NavLink>
+                  </li>
+                ) : (
+                  <li>
+                    <NavLink
+                      to="/docchat"
+                      className="text-md font-medium hover:bg-gray-200 px-4 py-2 block rounded-full"
+                    >
+                      Chat
+                    </NavLink>
+                  </li>
+                )}
+
+                <li>
+                  <NavLink
+                    to="/about"
+                    className="text-md font-medium hover:bg-gray-200 px-4 py-2 block rounded-full"
+                  >
+                    About Us
+                  </NavLink>
+                </li>
+
+                <li>
+                  <NavLink
+                    to="/faq"
+                    className="text-md font-medium hover:bg-gray-200 px-4 py-2 block rounded-full"
+                  >
+                    FAQs
+                  </NavLink>
+                </li>
+
+                {id ? (
+                  <li>
+                    <button
+                      className="text-md font-medium hover:bg-gray-200 px-4 py-2 block rounded-full"
+                    >
+                      Logout
+                    </button>
+                  </li>
+                ) : (
+                  <li>
+                    <NavLink
+                      to="/login"
+                      className="text-md font-bold hover:bg-gray-200 px-4 py-2 block rounded-full"
+                    >
+                      LogIn
+                    </NavLink>
+                  </li>
+                )}
+              </ul>
+            </div> */ 

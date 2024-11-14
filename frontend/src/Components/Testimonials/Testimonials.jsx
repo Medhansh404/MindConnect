@@ -43,7 +43,7 @@ const Testimonials = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto text-center py-10 relative mt-36 mb-36">
+    <div className="max-w-72 md:max-w-4xl mx-auto text-center py-5 md:py-10 relative mt-20 md:mt-36 mb-20 md:mb-36">
       <h1 className="text-5xl font-bold mb-8">Hear From Our Happy healers</h1>
       <button
           onClick={prevSlide}
@@ -51,7 +51,7 @@ const Testimonials = () => {
         >
           &larr;
         </button>
-      <div className="relative overflow-hidden h-48">
+      <div className="relative overflow-hidden h-80 md:h-48">
       
         {testimonials.map((testimonial, index) => (
           <div

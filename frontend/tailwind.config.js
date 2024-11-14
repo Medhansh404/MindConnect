@@ -11,6 +11,12 @@ module.exports = {
         customBlue: '#001737',
         customDarkYellow:'#D28C1E',
       },
+      screens: {
+        'mobile': '480px',       // Custom mobile breakpoint
+        'tablet': '768px',       // Custom tablet breakpoint
+        'laptop': '1024px',      // Custom laptop breakpoint
+        'desktop': '1280px',     // Custom desktop breakpoint
+      },
     }
   },
   plugins: [],
