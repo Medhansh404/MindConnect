@@ -103,7 +103,7 @@ socket.on('sendMessage', (data) => {
     }
     sessionMessages.get(sessionId).push(message);
 
-    io.emit('receiveMessage', message);
+    socket.to(sessionId).emit('receiveMessage', message);
 });
 
 socket.on('saveMessage', async (userId) => {

@@ -4,35 +4,63 @@ import io from "socket.io-client";
 import useAuth from '../Hooks/useAuth';
 
 
-const Chat = () => {
+const Chat = (docChatId) => {
   const [messages, setMessages] = useState([]);
-  const [userMessage, setUserMessage] = useState('');  
+  const [userMessage, setUserMessage] = useState(''); 
+  const[id, setdocId] = useState(); 
   const chatBoxRef = useRef(null);  
   const socketRef = useRef(null);
   const [sessionId, setId] = useState('')  
   const {auth} = useAuth();
- 
+  
+  useEffect(() =>{
+    // if(auth.roles == 1911) {
+    //   setdocId(docChatId.chatId.participants[0])
+    // }
+    // else{
+    //   setdocId( auth.id)
+    // }
+    setMessages([]);
+  }, [docChatId, id])
+
+  useEffect(() =>{
+    if(auth.roles == 1911) {
+      setdocId(docChatId.chatId.participants[0])
+    }
+    else{
+      setdocId( auth.id)
+    }
+  }, [])
+
   useEffect(() => {
+    if(auth.roles == 1911) {
+      setdocId(docChatId.chatId.participants[0])
+    }
+    else{
+      setdocId( auth.id)
+    }
     // Connect to the WebSocket server
     socketRef.current = io("http://localhost:8080");
-
-
+    
+    console.log(docChatId)
+    
     // Join the specific chat session room
-    socketRef.current.emit('joinSession', auth.id,
+    socketRef.current.emit('joinSession', id,
       (response)=>{
         if (response.error) {
           console.error('Error joining session:', response.error);
     }
       else{
-        console.log(response)
         setId(response);
       }
+    
     });
 
 
     // Listen for incoming messages
     socketRef.current.on('receiveMessage', (message) => {
     setMessages((prevMessages) => [...prevMessages, { ...message}]);
+    // setMessages([])
     });
 
 
@@ -42,7 +70,7 @@ const Chat = () => {
       socketRef.current.emit('saveMessage', auth.id);
       socketRef.current.disconnect();
     };
-  }, []);
+  }, [docChatId,id]);
 
 
   // Get formatted current time
@@ -69,6 +97,7 @@ const Chat = () => {
         time: getCurrentTime(),
       };
       socketRef.current.emit('sendMessage', messageData);
+      setMessages((prevMessages) => [...prevMessages, { ...messageData}]);
       setUserMessage('');
     }
   };
@@ -95,8 +124,9 @@ const Chat = () => {
         <div className="max-w-4xl mx-auto">
           <div ref={chatBoxRef} className="bg-white rounded-lg shadow-lg p-6 h-96 overflow-y-auto mb-4">
             {messages.length === 0 ? (
-             
-              <p className="text-gray-500 text-center">No messages yet</p>
+              
+              <p className="text-gray-500 text-center">No messages yet {id}</p>
+              
             ) : (
               messages.map((message, index) => (
                 <div key={index}

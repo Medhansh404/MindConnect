@@ -13,6 +13,7 @@ const DocChat = () => {
   const [selectedChat, setSelectedChat] = useState(null);
   const [dropdownVisible, setDropdownVisible] = useState(null);
 
+
   useEffect(() =>{
     const fetchChat = async() =>{
       try{
@@ -23,6 +24,7 @@ const DocChat = () => {
           );
       const filteredChats =  Object.values(response.data)
       setChats(filteredChats)
+      console.log(typeof chats);
       }
       catch(err){
 
@@ -73,8 +75,8 @@ const DocChat = () => {
               <div
                 key={chat.sessionId.toString()}
                 className={`border border-customBlue p-4 rounded-3xl cursor-pointer hover:bg-blue-200 relative dropdown
-                  ${selectedChat === chat  ? 'bg-customYellow hover:bg-yellow-300' : 'bg-blue-100'}`}
-                onClick={() => setSelectedChat(chat)}
+                  ${selectedChat === chat.sessionId.toString() ? 'bg-customYellow hover:bg-yellow-300' : 'bg-blue-100'}`}
+                onClick={() => setSelectedChat(chat.sessionId.toString())}
               >
                 <div className="flex justify-between items-center">
                   <h3 className="text-lg font-bold text-center">{chat.participants}</h3>
@@ -108,17 +110,10 @@ const DocChat = () => {
 
         <div className="w-3/4">
           {selectedChat ? (
-
             // If a chat is selected, render the Chat component
             <div>
             <p>{selectedChat}</p>
-
-
-
-
-
-
-           <Chat chatId={selectedChat} />
+            <Chat chatId={selectedChat} />
             </div>
           ) : (
             <p className="text-gray-700 text-center pt-20">Please select a chat to view</p>
