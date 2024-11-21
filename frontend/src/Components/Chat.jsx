@@ -11,6 +11,8 @@ const Chat = () => {
   const socketRef = useRef(null); 
   const [sessionId, setId] = useState('')  
   const {auth} = useAuth();
+
+  
   useEffect(() => {
     // Connect to the WebSocket server
     socketRef.current = io("http://localhost:8080");

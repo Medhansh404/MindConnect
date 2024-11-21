@@ -7,6 +7,7 @@ import Tagline from "./Tagline.jsx";
 import Testimonials from "./Testimonials/Testimonials.jsx";
 import Footer from "./Footer.jsx";
 import useAuth from '../Hooks/useAuth.js';
+import logo from "../assests/home_logo.png";
 
 const Home = () =>{
   const {auth} = useAuth();
@@ -34,7 +35,21 @@ const Home = () =>{
         <Tagline />
         <div className="py-5 px-5 bg-customGreen"></div>
       </div>
-      <Blogs limit = {3} />
+      {/* <div> */}
+        <div className="flex flex-col md:flex-row md:justify-between items-center gap-4 md:gap-0 bg-gray-100">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-purple-600 text-center md:text-left">
+            Latest Blogs
+          </h1>
+          <Link
+            to="/blogs"
+            className="text-purple-600 text-lg md:text-xl font-bold border border-purple-600 px-6 py-2 sm:px-8 sm:py-3 rounded-full hover:bg-purple-600 hover:text-white transition-colors duration-300"
+          >
+            View All
+          </Link>
+        </div>
+        <Blogs limit={3} />
+      {/* </div> */}
+     
       <Gyan />
       
       <br />
