@@ -1,15 +1,10 @@
 import React from "react";
 import Navbar from "./Navbar/Navbar";
-// import banner from "../assets/abtt.png";
-// import devansh from "../assets/dj.jpeg";
-// import manju from "../assets/manju.jpeg";
-// import yash from "../assets/yash.jpeg";
-// import medhansh from "../assets/medh.jpeg";
- import banner from "../assests/abtt.png";
- import devansh from "../assests/dj.jpeg";
- import manju from "../assests/manju.jpeg";
- import yash from "../assests/yash.jpeg";
- import medhansh from "../assests/medh.jpeg";
+import banner from "../assests/abtt.png";
+import devansh from "../assests/dj.jpeg";
+import manju from "../assests/manju.jpeg";
+import yash from "../assests/yash.jpeg";
+import medhansh from "../assests/medh.jpeg";
 import Footer from "./Footer";
 
 const Team = [

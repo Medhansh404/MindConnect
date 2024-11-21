@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import BlogCard from './BlogCard';
 import { Link } from 'react-router-dom';
+// import logo from "../assests/home_logo.png";
+import logo from "../../assests/home_logo.png";
+import Navbar from '../Navbar/Navbar';
 
 function Blogs({ limit }) {
   const [blogs, setBlogs] = useState([]);
-  // console.log(BLOG_API_URL);
+
   useEffect(() => {
     async function fetchBlogs() {
       try {
@@ -36,19 +39,10 @@ function Blogs({ limit }) {
 
   return (
     <div className="min-h-screen bg-gray-100 px-4 py-8 sm:px-8 md:px-12 lg:px-24 lg:py-12">
+      <Navbar />
       <div className="mx-auto max-w-7xl h-full">
-        <div className="flex flex-col md:flex-row justify-between items-center mb-8">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-purple-600 mb-4 md:mb-0 text-center md:text-left">
-            Latest Blogs
-          </h1>
-          <Link
-            to="/blogs"
-            className="text-purple-600 text-lg md:text-xl font-bold border border-purple-600 px-6 py-2 sm:px-8 sm:py-3 rounded-full hover:bg-purple-600 hover:text-white transition-colors duration-300"
-          >
-            View All
-          </Link>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 h-auto rounded-3xl">
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 h-auto rounded-3xl mt-36">
           {displayblogs.map((blog, index) => (
             <BlogCard key={index} {...blog} />
           ))}
