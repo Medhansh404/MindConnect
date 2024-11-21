@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from "../Api/axios";
 import logo from "../assests/home_logo.png";
+import "./loader.css";
 
 const REGISTER_URL = '/register';
 
@@ -16,6 +17,7 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [pwd, setPwd] = useState('');
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setErrMssg('');
@@ -23,6 +25,7 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); // Show loader when the request starts
 
     try {
       const response = await axios.post(REGISTER_URL,
@@ -53,6 +56,9 @@ const Register = () => {
       else {
         setErrMssg('Register Failed, Try again');
       }
+    }
+    finally{
+      setLoading(false);
     }
   };
 
@@ -116,7 +122,11 @@ const Register = () => {
               type="submit"
               className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
             >
-              REGISTER
+              {loading ? (
+                <div className="loader"></div> // Replace with a spinner or loading animation
+            ) : (
+                "REGISTER"
+            )}
             </button>
             <div className="items-center text-center">
             <div className="text-sm pt-2">

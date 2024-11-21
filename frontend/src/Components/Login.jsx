@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import useAuth from '../Hooks/useAuth';
 import axios from "../Api/axios";
 import logo from "../assests/home_logo.png";
+import "./loader.css";
 
 const LOGIN_URL = '/auth';
 
@@ -17,6 +18,7 @@ const Login = () => {
   const [errMssg, setErrMssg] = useState('');
   const [email, setEmail] = useState('');
   const [pwd, setPwd] = useState('');
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setErrMssg('');
@@ -24,6 +26,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); // Show loader when the request starts
 
     try {
       const response = await axios.post(LOGIN_URL,
@@ -44,7 +47,9 @@ const Login = () => {
       setAuth({ userName, id, email, pwd, roles, accessToken, gender, dob, mobile });
       setEmail('');
       setPwd('');
-      from === '/' ? navigate("/") : navigate(from, { replace: true });
+      // from === '/login' ? navigate
+      console.log(from);
+      from == ('/' || "/login") ? navigate("/") : navigate(from, { replace: true });
     }
     catch (error) {
       if (!error?.response) {
@@ -59,6 +64,9 @@ const Login = () => {
       else {
         setErrMssg('Login Failed, Try again');
       }
+    }
+    finally{
+      setLoading(false); // Hide loader when the request completes
     }
   };
 
@@ -77,7 +85,10 @@ const Login = () => {
         <h2 className="text-2xl font-bold text-center text-gray-900 mb-6">Welcome to MindConnect</h2>
         </div>
         {errMssg && <p ref={errRef} className="text-red-500 text-center">{errMssg}</p>}
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form 
+          onSubmit={handleSubmit} 
+          className="space-y-6"
+          disabled={loading}>
           <div>
             {/* <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email address</label> */}
             <input
@@ -111,7 +122,11 @@ const Login = () => {
               type="submit"
               className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
             >
-              LOGIN
+              {loading ? (
+                <div className="loader"></div> // Replace with a spinner or loading animation
+            ) : (
+                "LOGIN"
+            )}
             </button>
             <div className="text-center pt-2">
             <div className="text-sm">

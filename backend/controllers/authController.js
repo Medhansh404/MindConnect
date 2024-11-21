@@ -46,4 +46,15 @@ const handleLogin = async (req, res) => {
     }
 }
 
-module.exports = { handleLogin };
+const handleLogout = async (req, res) => {
+  
+  // Check if the jwt cookie is present
+  const cookies = req.cookies;
+  if (!cookies?.jwt) return res.sendStatus(204); // No content to send back if there's no cookie
+  // const refreshToken = cookies.jwt;
+  // Clear the jwt cookie
+  res.clearCookie('jwt', { httpOnly: true, sameSite: 'None', secure: true });
+  res.json({ message: 'Logged out successfully' });
+};
+
+module.exports = { handleLogin, handleLogout };
