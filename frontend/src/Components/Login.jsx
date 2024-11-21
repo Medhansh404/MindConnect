@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import useAuth from '../Hooks/useAuth';
 import axios from "../Api/axios";
 import logo from "../assests/home_logo.png";
@@ -130,7 +130,7 @@ const Login = () => {
             </button>
             <div className="text-center pt-2">
             <div className="text-sm">
-              <span className='font-medium'>Don't have an account? </span><a href="/register" className="font-medium text-indigo-600 hover:text-indigo-500 hover:underline">Sign Up</a>
+              <span className='font-medium'>Don't have an account? </span><Link to="/register" className="font-medium text-indigo-600 hover:text-indigo-500 hover:underline">Sign Up</Link>
             </div>
           </div>
           </div>

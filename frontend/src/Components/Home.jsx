@@ -36,7 +36,7 @@ const Home = () =>{
         <div className="py-5 px-5 bg-customGreen"></div>
       </div>
       {/* <div> */}
-        <div className="flex flex-col md:flex-row md:justify-between items-center gap-4 md:gap-0 bg-gray-100">
+        <div className="flex flex-col md:flex-row md:justify-between items-center gap-4 md:gap-0 bg-gray-100 pl-28 pr-28 pt-10 -mb-32">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-purple-600 text-center md:text-left">
             Latest Blogs
           </h1>

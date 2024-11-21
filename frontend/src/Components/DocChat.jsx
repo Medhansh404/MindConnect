@@ -111,7 +111,10 @@ const DocChat = () => {
         <div className="w-3/4">
           {selectedChat ? (
             // If a chat is selected, render the Chat component
+            <div>
+            <p>{selectedChat}</p>
             <Chat chatId={selectedChat} />
+            </div>
           ) : (
             <p className="text-gray-700 text-center pt-20">Please select a chat to view</p>
           )}

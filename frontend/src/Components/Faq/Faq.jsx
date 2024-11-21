@@ -58,7 +58,7 @@ const Faq = () => {
                 <span className="font-extrabold text-8xl">FAQs</span>
             </div>
             <div>
-            <div className="max-w-2xl mx-auto mt-32">
+            <div className="max-w-2xl mx-auto mt-32 pl-8 pr-8">
                 <div className="flex flex-col gap-2">
                 {faqs.map((faq, index) => (
                     <FaqItem key={index} question={faq.question} answer={faq.answer} />
