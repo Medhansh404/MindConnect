@@ -18,14 +18,14 @@ const ChatLanding = () => {
             Something on your mind?
           </h1>
           <h2 className="text-2xl md:text-3xl text-customGreen font-bold mb-6">
-            Chat with a peer worker who understands
+            Chat with an expert who understands
           </h2>
           <p className="text-lg mb-4">
-            Our peer workers have experience with mental health challenges and use this experience to support others.
+            Our expert have experience with mental health challenges and use this experience to support others.
           </p>
          
           <Link to = "/userchat" className="bg-customGreen hover:bg-customYellow hover:text-black text-white font-bold py-2 px-4 rounded-full">
-            Create a New Chat
+            Chat Now
           </Link>
         </div>
         {/* Right side image placeholder */}
@@ -44,7 +44,7 @@ const ChatLanding = () => {
               </svg>
             </span>
             <p className="ml-4 text-lg">
-              Free text-based support with a peer worker
+              Free text-based support with an expert
             </p>
           </div>
           <div className="flex items-start">
