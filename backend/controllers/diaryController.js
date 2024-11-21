@@ -4,8 +4,11 @@ const prisma = new PrismaClient();
 // Function to get all diaries
 const getAllDiary = async (req, res) => {
     try {
+        const id = req.query.id
         const diaries = await prisma.Diary.findMany();
-        res.json(diaries);
+        const diariesArray = Object.values(diaries);
+        const filteredDiaries = diariesArray.filter(diary => diary.userId == id);
+        res.status(201).json(filteredDiaries);
     } catch (error) {
         res.status(500).json({ error: "Failed to retrieve diaries" });
     }
@@ -14,7 +17,6 @@ const getAllDiary = async (req, res) => {
 
 const createNewDiary = async (req, res) => {
     try {
-        // console.log(req.body)
         const newDiary = await prisma.Diary.create({
             data: {
                 entry: req.body.entry,

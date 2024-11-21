@@ -4,6 +4,7 @@ const cors = require('cors');
 const http = require('http'); 
 const { Server } = require('socket.io'); 
 const mongoose = require('mongoose');
+const { ObjectId } = require("mongodb");
 const app = express();
 const corsOptions = require('./config/corsOptions');
 const { logger } = require('./middleware/logEvents');
@@ -50,21 +51,21 @@ app.use('/register', require('./routes/register'));
 app.use('/auth', require('./routes/auth'));
 app.use('/refresh', require('./routes/refresh'));
 app.use('/diary', require('./routes/api/diary'));
-app.get('/chatroom', require('./routes/chatroom'));
+app.use('/chat', require('./routes/chat'));
 
 // JWT Verification middleware
 //app.use(verifyJWT);
 
-app.all('*', (req, res) => {
-    res.status(404);
-    if (req.accepts('html')) {
-        res.sendFile(path.join(__dirname, 'views', '404.html'));
-    } else if (req.accepts('json')) {
-        res.json({ "error": "404 Not Found" });
-    } else {
-        res.type('txt').send("404 Not Found");
-    }
-});
+// app.all('*', (req, res) => {
+//     res.status(404);
+//     if (req.accepts('html')) {
+//         res.sendFile(path.join(__dirname, 'views', '404.html'));
+//     } else if (req.accepts('json')) {
+//         res.json({ "error": "404 Not Found" });
+//     } else {
+//         res.type('txt').send("404 Not Found");
+//     }
+// });
 
 // Error Handler Middleware
 app.use(errorHandler);
@@ -81,7 +82,8 @@ io.on('connection', (socket) => {
     socket.on('joinSession', async (userId, callback) => {
         try {
             const sessionId = await chatController.startSession(userId)
-            socket.join(sessionId);
+            const chatRoomId = sessionId.toString()
+            socket.join(chatRoomId);
             console.log(`Client joined session: ${sessionId}`);
             callback(sessionId);
         }
@@ -93,27 +95,27 @@ io.on('connection', (socket) => {
 const sessionMessages = new Map();
 
 socket.on('sendMessage', (data) => {
-    const { sessionId, senderId, content } = data;
+    const { sessionId, senderId, content, time } = data;
     const message = data;
 
     if (!sessionMessages.has(sessionId)) {
         sessionMessages.set(sessionId, []);
     }
     sessionMessages.get(sessionId).push(message);
-    console.log(message)
+
     io.emit('receiveMessage', message);
 });
 
-socket.on('saveMessage', async (sessionId) => {
-    const id = sessionId;
-
-    if (sessionMessages.has(id)) {
-        const messages = sessionMessages.get(id);
-
+socket.on('saveMessage', async (userId) => {
+    const sessionId = await chatController.startSession(userId)
+    console.log(sessionId)
+    if (sessionMessages.has(sessionId.toString())) {
+        const messages = sessionMessages.get(sessionId.toString());
+        
         try {
             for (const msg of messages) {
                 await chatController.sendMessage({ 
-                    id, 
+                    sessionId, 
                     senderId: msg.senderId, 
                     content: msg.content, 
                     timestamp: msg.time 
@@ -124,6 +126,9 @@ socket.on('saveMessage', async (sessionId) => {
         }
 
         sessionMessages.delete(sessionId);
+    }
+    else{
+        console.log(sessionMessages)
     }
 });
 });

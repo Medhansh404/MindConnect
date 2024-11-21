@@ -1,9 +1,21 @@
 const sessionService = require('../services/sessionService.js');
+const Session = require('../model/sessionModel.js');
+const mongoose = require('mongoose');
+
+const getAllChats = async (req, res) => {
+    try{
+        const chats = await Session.find();
+        res.status(201).json(chats)
+        
+    }
+    catch(err){
+        console.log(err)
+    }
+};
 
 // Start or find a session
-exports.startSession = async (userId) => {
+const startSession =  async(userId) => {
     const user1Id = userId;
-    
     try {
         const sessionId = await sessionService.findOrCreateSession(user1Id);
         return sessionId;
@@ -13,19 +25,17 @@ exports.startSession = async (userId) => {
 };
 
 // Send a message within a session
-exports.sendMessage = async (data) => {
-    const { sessionId, senderId, content } = data;
-    
+const sendMessage = async (data) => {
+    const { sessionId, senderId, content, timestamp } = data;
     try {
-        const message = await sessionService.addMessageToSession(sessionId, senderId, content);
-        return message; 
+        const message = await sessionService.addMessageToSession(sessionId, senderId, content, timestamp);
     } catch (err) {
         throw new Error(err.message); 
     }
 };
 
 // Get the message history for a session
-exports.getSessionHistory = async (req, res) => {
+const getSessionHistory = async (req, res) => {
     const { sessionId } = req.params;
 
     try {
@@ -35,3 +45,10 @@ exports.getSessionHistory = async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 };
+
+module.exports = {
+    getAllChats,
+    startSession,
+    sendMessage,
+    getSessionHistory
+}
