@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Navbar from './Navbar/Navbar';
 import axios from '../Api/axios'
 import Chat from './Chat'; // Import the Chat component
-
+import { FaBeer, FaCat, FaDog, FaApple, FaCar, FaCoffee, FaRocket } from "react-icons/fa";
 
 const CHAT_URL = '/chat'
 
@@ -12,6 +12,39 @@ const DocChat = () => {
   const [chats, setChats] = useState({});
   const [selectedChat, setSelectedChat] = useState(null);
   const [dropdownVisible, setDropdownVisible] = useState(null);
+
+  
+// const IconGenerator = () => {
+//   const [icon, setIcon] = useState(null);
+
+//   const iconsList = [
+//     <FaBeer key="beer" size={50} color="orange" />,
+//     <FaCat key="cat" size={50} color="purple" />,
+//     <FaDog key="dog" size={50} color="brown" />,
+//     <FaApple key="apple" size={50} color="red" />,
+//     <FaCar key="car" size={50} color="blue" />,
+//     <FaCoffee key="coffee" size={50} color="black" />,
+//     <FaRocket key="rocket" size={50} color="gray" />,
+//   ];
+
+//   const generateIcon = () => {
+//     const randomIndex = Math.floor(Math.random() * iconsList.length);
+//     setIcon(iconsList[randomIndex]);
+//   };
+const generateIcon = () => {
+    const icons = [
+    <FaBeer key="beer" size={30} color="orange" />,
+    <FaCat key="cat" size={30} color="purple" />,
+    <FaDog key="dog" size={30} color="brown" />,
+    <FaApple key="apple" size={30} color="red" />,
+    <FaCar key="car" size={30} color="blue" />,
+    <FaCoffee key="coffee" size={30} color="black" />,
+    <FaRocket key="rocket" size={30} color="gray" />,
+  ];
+  // const icons = [<FaBeer />, <FaCat />, <FaDog />];
+  const randomIndex = Math.floor(Math.random() * icons.length);
+  return icons[randomIndex];
+};
 
   useEffect(() =>{
     const fetchChat = async() =>{
@@ -22,6 +55,10 @@ const DocChat = () => {
             }
           );
       const filteredChats =  Object.values(response.data)
+      filteredChats.forEach(values => {
+        values.icons = generateIcon();
+      });
+
       setChats(filteredChats)
       }
       catch(err){
@@ -77,7 +114,7 @@ const DocChat = () => {
                 onClick={() => setSelectedChat(chat)}
               >
                 <div className="flex justify-between items-center">
-                  <h3 className="text-lg font-bold text-center">{chat.participants}</h3>
+                  <h3 className="text-lg font-bold text-center">{chat.icons}</h3>
                   <div onClick={(e) => {
                     e.stopPropagation();
                     toggleDropdown(chat.sessionId.toString());
@@ -110,16 +147,10 @@ const DocChat = () => {
           {selectedChat ? (
 
             // If a chat is selected, render the Chat component
-            <div>
-            <p>{selectedChat}</p>
-
-
-
-
-
+           
 
            <Chat chatId={selectedChat} />
-            </div>
+           
           ) : (
             <p className="text-gray-700 text-center pt-20">Please select a chat to view</p>
           )}
