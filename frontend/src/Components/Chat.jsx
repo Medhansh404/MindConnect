@@ -14,12 +14,6 @@ const Chat = (docChatId) => {
   const {auth} = useAuth();
   
   useEffect(() =>{
-    // if(auth.roles == 1911) {
-    //   setdocId(docChatId.chatId.participants[0])
-    // }
-    // else{
-    //   setdocId( auth.id)
-    // }
     setMessages([]);
   }, [docChatId, id])
 

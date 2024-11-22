@@ -20,7 +20,7 @@ const Tagline = () => {
             anonymous expert support, or sharing inspiring blogs — MindConnect
             provides a safe, anonymous platform for college students to thrive.
           </p>
-          {roles === 1911 ? (
+          {roles == 1911 ? (
             <Link
               to="/docchat"
               className="mt-4 md:mt-5 text-center text-lg md:text-2xl bg-white text-blue-900 font-bold py-3 px-4 md:py-5 md:px-6 rounded-full hover:bg-blue-900 hover:text-white transition duration-300"

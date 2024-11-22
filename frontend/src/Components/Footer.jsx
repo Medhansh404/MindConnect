@@ -22,7 +22,7 @@ const Footer = () => {
 
           <div className="hidden sm:flex flex-wrap justify-center sm:justify-start">
             <ul className="text-lg font-bold flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-              <li><Link to="/chat" className="hover:underline">Chat With Expert</Link></li>
+              <li><Link to="/chat" className="hover:underline">Chat</Link></li>
               <li><Link to="/blogs" className="hover:underline">Blogs</Link></li>
               <li><Link to="/faq" className="hover:underline">FAQs</Link></li>
               <li><Link to="/about" className="hover:underline">About Us</Link></li>

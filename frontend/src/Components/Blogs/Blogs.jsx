@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import BlogCard from './BlogCard';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 // import logo from "../assests/home_logo.png";
 import logo from "../../assests/home_logo.png";
@@ -11,16 +12,18 @@ function Blogs({ limit }) {
   useEffect(() => {
     async function fetchBlogs() {
       try {
-        const response = await fetch('https://newsapi.org/v2/everything?q=mental%20health&apiKey=750b921991ce48e7b6755191e900d205');
+        const response = await axios.get('https://newsapi.org/v2/everything?q=mental%20health&apiKey=750b921991ce48e7b6755191e900d205');
         // Check if the response is OK
-        if (!response.ok) {
+        if (!response) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
+        console.log(response);
         
-        const data = await response.json();
-        
+        const data = response.data;
+        const fdata = [data.articles[24], data.articles[31], data.articles[1], data.articles[22], data.articles[39],
+        data.articles[49], data.articles[57], data.articles[65], data.articles[71], data.articles[93]]
         // Ensure you access the correct structure (like `articles` in some APIs)
-        const formattedData = (data.articles || []).map(article => ({
+        const formattedData = (fdata || []).map(article => ({
           image: article.urlToImage || 'fallback-image-url.jpg',
           title: article.title,
           description: article.description,
