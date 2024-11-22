@@ -21,7 +21,7 @@ function Blogs({ limit }) {
         
         const data = response.data;
         const fdata = [data.articles[24], data.articles[31], data.articles[1], data.articles[22], data.articles[39],
-        data.articles[49], data.articles[57], data.articles[65], data.articles[71], data.articles[93]]
+         data.articles[65]]
         // Ensure you access the correct structure (like `articles` in some APIs)
         const formattedData = (fdata || []).map(article => ({
           image: article.urlToImage || 'fallback-image-url.jpg',

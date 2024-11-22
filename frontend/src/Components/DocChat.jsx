@@ -122,21 +122,6 @@ const generateIcon = () => {
                     <span className="text-xl cursor-pointer">⋮</span>
                   </div>
                 </div>
-
-
-                {/* Dropdown menu */}
-                {dropdownVisible === chat.sessionId.toString() && (
-                  <div className="absolute right-0 mt-2 w-32 bg-white shadow-lg rounded-lg z-10">
-                    <ul>
-                      <li className="px-4 py-2 hover:bg-gray-200 cursor-pointer">
-                        Resolve Chat
-                      </li>
-                      {/* <li className="px-4 py-2 hover:bg-gray-200 cursor-pointer">
-                        View Profile
-                      </li> */}
-                    </ul>
-                  </div>
-                )}
               </div>
             ))}
           </div>
@@ -145,10 +130,6 @@ const generateIcon = () => {
 
         <div className="w-3/4">
           {selectedChat ? (
-
-            // If a chat is selected, render the Chat component
-           
-
            <Chat chatId={selectedChat} />
            
           ) : (
